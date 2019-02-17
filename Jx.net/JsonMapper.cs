@@ -2,15 +2,38 @@
 
 namespace Jx.net
 {
-    public class JsonMapper : IJsonMapper
+    public static class JsonMapper
     {
-        public JsonMapper()
+        public static ValueMapper Mapper { get; private set; }
+
+        static JsonMapper()
         {
+            FactoryReset();
         }
 
-        public string Map(string sourceJson, string mapperJson)
+        public static void FactoryReset()
+        {
+            Mapper = new ValueMapper();
+            RegisterValueMapper();
+        }
+
+        private static void RegisterValueMapper()
+        {
+            var myself = typeof(JsonMapper);
+            var assemblyName = myself.Assembly.GetName().Name;
+            var className = $"{myself.Namespace}.{myself.Name}";
+            JUSTContext.ClearCustomFunctionRegistrations();
+            JUSTContext.RegisterCustomFunction(assemblyName, className, nameof(MapValue));
+        }
+
+        public static string Map(string sourceJson, string mapperJson)
         {
             return JsonTransformer.Transform(mapperJson, sourceJson);
+        }
+
+        public static dynamic MapValue(string mapperName, string fromValue)
+        {
+            return Mapper.MapValue(mapperName, fromValue);
         }
     }
 }

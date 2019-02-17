@@ -8,21 +8,13 @@ namespace Jx.net.Tests
     public class BasicTransformationTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TransformJson()
         {
-            var mapper = new JsonMapper();
             var input = "{ \"menu\": { \"popup\": { \"menuitem\": [ { \"value\": \"Open\", \"onclick\": \"OpenDoc()\" }, { \"value\": \"Close\", \"onclick\": \"CloseDoc()\" } ] } } }";
             var transformer = "{ \"result\": { \"Open\": \"#valueof($.menu.popup.menuitem[?(@.value=='Open')].onclick)\", \"Close\": \"#valueof($.menu.popup.menuitem[?(@.value=='Close')].onclick)\" } }";
             var expected = "{ \"result\":{\"Open\": \"OpenDoc()\", \"Close\": \"CloseDoc()\"} }";
-            var actual = mapper.Map(input, transformer);
-            AssertAreEqual(expected, actual);
-        }
-
-        private void AssertAreEqual(string expected, string actual)
-        {
-            expected = JsonConvert.DeserializeObject(expected).ToString();
-            actual = JsonConvert.DeserializeObject(actual).ToString();
-            Assert.AreEqual(expected, actual);
+            var actual = JsonMapper.Map(input, transformer);
+            JsonAssert.AreEqual(expected, actual);
         }
     }
 }
