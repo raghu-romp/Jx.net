@@ -1,0 +1,6 @@
+{
+  "FullName": "::$.firstName:: ::$.lastName::",
+  "AddressLine1": "#::$.address.streetAddress::, ::$.address.city::",
+  "AddressLine2": "::$.address.state::, ::$.address.postalCode::",
+  "Mobile": "::$.phoneNumbers[?(@.type == 'mobile')].number::"
+}
