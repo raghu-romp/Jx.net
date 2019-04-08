@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Jx.net.Transformer;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,6 +13,13 @@ namespace Jx.net.Extensions
 
     public static class JTokenExtensions
     {
+
+        public static bool TrySelectToken(this JToken node, string jPath, out JToken token)
+        {
+            token = node.SelectToken(jPath);
+            return token != null;
+        }
+
         public static void AllStrings(this JToken token, StringJtokenAction action)
         {
             if (token.Type == JTokenType.Object) {
@@ -26,7 +34,7 @@ namespace Jx.net.Extensions
         }
 
 
-        public static JArray FindForEach(this JToken token, out string expression)
+        internal static JArray FindForEach(this JToken token, out string expression)
         {
             if (token.Type == JTokenType.Object)
             {
@@ -64,7 +72,7 @@ namespace Jx.net.Extensions
                 if (firstItem != null && firstItem.Type == JTokenType.String)
                 {
                     var value = firstItem.Value<string>();
-                    if (value.StartsWith("*jx-for"))
+                    if (Patterns.JxFor.IsMatch(value))
                     {
                         jxForExpression = value;
                         return true;
