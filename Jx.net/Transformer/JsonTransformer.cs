@@ -11,27 +11,60 @@ namespace Jx.net.Transformer
     {
         private const string MESSAGE_ID_TOKEN_START = @"::";
         private const string MESSAGE_ID_TOKEN_END = @"::";
-
+        private Context rootCtx;
+        private Context currentCtx;
+        
         public JToken Transform(JToken source, JToken transformer)
         {
-            var root = source;
+            rootCtx = new Context { Node = source };
             var output = transformer.DeepClone();
 
-            output.AllStringProperties((value, property, parent) => {
-                property.Value = Resolve(value, root);
+            RenderNode(source, transformer, rootCtx);
+
+            output.AllStrings((value, token, parent) => {
+                if (value.StartsWith("*")) {
+                    
+                }
+                if (parent.Type == JTokenType.Property)
+                {
+                    ((JProperty)parent).Value = Resolve(value, rootCtx);
+                }
             });
 
             return output;
         }
 
-        public dynamic Resolve(string str, JToken source)
+        private void RenderNode(JToken source, JToken transformer, Context context)
+        {
+            JArray forEachArray = null;
+            currentCtx = context;
+            int iterations = 0;
+            do
+            {
+                forEachArray = transformer.FindForEach(out var expression);
+                if (forEachArray != null)
+                {
+                    RenderForEach(forEachArray, forEachArray.Parent, expression);
+                    iterations++;
+                }
+            } while (forEachArray != null && iterations < 100);
+            
+        }
+
+        private void RenderForEach(JArray arrayTemplate, JToken parentToken, string forEachExpression)
+        {
+            
+        }
+
+        internal dynamic Resolve(string str, Context ctx)
         {
             var regex = new Regex(string.Format(@"{0}(.*?){1}", MESSAGE_ID_TOKEN_START, MESSAGE_ID_TOKEN_END), RegexOptions.Compiled);
             return regex.Replace(str, match => {
-                var matchToken = source.SelectToken(match.Groups[1].Value);
+                var matchToken = ctx.Node.SelectToken(match.Groups[1].Value);
                 if (matchToken == null) {
                     return $"[{match.Groups[1].Value}]";
                 }
+
 
                 var val = string.Empty;
                 val = matchToken.Value<dynamic>();

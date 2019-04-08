@@ -15,25 +15,28 @@ namespace Jx.net.Tests
     public class JsonTransformerTests
     {
         string testsRootPath;
-        List<string> testFolders = new List<string>();
 
         [TestInitialize]
         public void Setup()
         {
             testsRootPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "tests");
-            Directory.GetDirectories(testsRootPath).Each(dir => testFolders.Add(Path.Combine(testsRootPath, dir)));
         }
 
         [TestMethod]
-        public void Test()
+        public void BasicTest()
         {
-            foreach (var testPath in testFolders) {
-                TestUseCase(testPath);
-            }
+            TestUseCase("basic");
         }
 
-        private void TestUseCase(string testPath)
+        [TestMethod]
+        public void JxForTest()
         {
+            TestUseCase("jx-for");
+        }
+
+        private void TestUseCase(string name)
+        {
+            var testPath = Path.Combine(testsRootPath, name);
             var source = ReadFile(Path.Combine(testPath, "source.json"));
             var transformer = ReadFile(Path.Combine(testPath, "transformer.json"));
             var expected = ReadFile(Path.Combine(testPath, "expected.json"));

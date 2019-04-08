@@ -1,0 +1,9 @@
+[
+  "*jx-for($.people) as p",
+  {
+    "FullName": "::@ctx.firstName:: ::@ctx.lastName::",
+    "AddressLine1": "#::@ctx.address.streetAddress::, ::@ctx.address.city::",
+    "AddressLine2": "::@ctx.address.state::, ::@ctx.address.postalCode::",
+    "Mobile": "::@ctx.phoneNumbers[?(@.type == 'mobile')].number::"
+  }
+]
