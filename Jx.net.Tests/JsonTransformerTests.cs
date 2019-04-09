@@ -34,6 +34,12 @@ namespace Jx.net.Tests
             TestUseCase("jx-for");
         }
 
+        [TestMethod]
+        public void NestedJxFor()
+        {
+            TestUseCase("multiple-jx-for");
+        }
+
         private void TestUseCase(string name)
         {
             var testPath = Path.Combine(testsRootPath, name);

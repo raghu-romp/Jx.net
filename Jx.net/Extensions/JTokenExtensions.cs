@@ -33,6 +33,31 @@ namespace Jx.net.Extensions
             }
         }
 
+        public static JArray ConvertToJArray(this IEnumerable<JToken> tokens) {
+            JArray array = null;
+
+            void IfNullAssign(JToken t, Action a = null) {
+                if (array == null) {
+                    array = (JArray)t;
+                } else {
+                    a?.Invoke();
+                }
+            }
+
+            foreach (var token in tokens) {
+                if (token.Type == JTokenType.Array) {
+                    IfNullAssign(token, () => {
+                        var newArray = (JArray)token;
+                        newArray.Each(elm => array.Add(elm));
+                    });
+                } else {
+                    IfNullAssign(new JArray());
+                    array.Add(token);
+                }
+            }
+
+            return array;
+        }
 
         internal static JArray FindForEach(this JToken token, out string expression)
         {

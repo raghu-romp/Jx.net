@@ -11,7 +11,7 @@ namespace Jx.net.Transformer
     {
         internal const int MaxIterations = 100;
 
-        private Context rootCtx;
+        private Context root;
         private Context currentCtx;
 
         public bool SuppressErrors { get; set; } = false;
@@ -20,12 +20,12 @@ namespace Jx.net.Transformer
         
         public JToken Transform(JToken source, JToken transformer)
         {
-            rootCtx = new Context { Node = source };
-            var output = RenderNode(source, transformer, rootCtx);
+            root = new Context { Node = source };
+            var output = RenderNode(transformer, root);
             return output;
         }
 
-        private JToken RenderNode(JToken source, JToken transformer, Context context)
+        private JToken RenderNode(JToken transformer, Context context)
         {
             var output = transformer.DeepClone();
             currentCtx = context;
@@ -41,36 +41,51 @@ namespace Jx.net.Transformer
             } while (forEachArray != null && iterations++ < MaxIterations);
 
             output.AllStrings((value, token, parent) => {
-                if (parent.Type == JTokenType.Property) {
-                    ((JProperty)parent).Value = Resolve(value);
+                var resolvedValue = Resolve(value);
+                if (parent != null) {
+                    if (parent.Type == JTokenType.Property)
+                        ((JProperty)parent).Value = resolvedValue;
+                }
+                else {
+                    output = JToken.FromObject(resolvedValue);
                 }
             });
 
             return output;
         }
 
-        private void RenderForEach(JArray jsForArray, JToken parentToken, string expression)
-        {
+        private void RenderForEach(JArray jsForArray, JToken parentToken, string expression) {
             var parsedExpression = Patterns.JxFor.Match(expression);
-            var jPath = parsedExpression.Groups["placeholder"].Value;
+            var query = parsedExpression.Groups["placeholder"].Value;
             var alias = parsedExpression.Groups["alias"].Success ? parsedExpression.Groups["alias"].Value : "";
-            var sourceArray = this.currentCtx.Node.SelectToken(jPath, !SuppressErrors) as JArray;
+            var context = FindContext(query, out var jPath);
+            var tokens = context.Node.SelectTokens(jPath, !SuppressErrors);
+
+            if (tokens == null) {
+                return;
+            }
+
+            var sourceArray = tokens.ConvertToJArray();
 
             var template = jsForArray[1];
             jsForArray.RemoveAll();
 
-            if (sourceArray != null)
-            {
+            if (sourceArray != null) {
                 var outerContext = currentCtx;
-                for (int index = 0; index < sourceArray.Count; index++)
-                {
+                for (int index = 0; index < sourceArray.Count; index++) {
                     var iterationNode = sourceArray[index];
-                    var newContext = new Context { index = index, Node = iterationNode, Parent = outerContext };
-                    var rendered = RenderNode(iterationNode, template, newContext);
+                    var newContext = new Context { Index = index, Node = iterationNode, Parent = outerContext };
+                    if (!string.IsNullOrWhiteSpace(alias)) {
+                        this.namedContext[alias] = newContext;
+                    }
+                    var rendered = RenderNode(template, newContext);
                     jsForArray.Add(rendered);
                 }
 
                 currentCtx = outerContext;
+                if (string.IsNullOrWhiteSpace(alias)) {
+                    this.namedContext.Remove(alias);
+                }
             }
         }
 
@@ -109,7 +124,7 @@ namespace Jx.net.Transformer
                 return this.namedContext.TryGetValue(name, out context);
             }
 
-            if (Check("$", rootCtx) || Check("@ctx", currentCtx) || CheckNamed(firstPart)) {
+            if (Check("$", root) || Check("@ctx", currentCtx) || CheckNamed(firstPart)) {
                 jPath = string.Join(".", new []{ "$", rest });
             } else {
                 jPath = placeholder;

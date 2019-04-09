@@ -1,0 +1,23 @@
+{
+  "Alive": [
+    "*jx-for($.people[?(@.isAlive == true)]) as p",
+    {
+      "FullName": "{{p.firstName}} {{p.lastName}}",
+      "AddressLine1": "#{{p.address.streetAddress}}, {{p.address.city}}",
+      "AddressLine2": "{{p.address.state}}, {{p.address.postalCode}}",
+      "Mobile": "{{p.phoneNumbers[?(@.type == 'mobile')].number}}"
+    }
+  ],
+  "Deceased": [
+    "*jx-for($.people[?(@.isAlive == false)]) as p",
+    {
+      "FullName": "{{p.firstName}} {{p.lastName}}",
+      "AddressLine1": "#{{p.address.streetAddress}}, {{p.address.city}}",
+      "AddressLine2": "{{p.address.state}}, {{p.address.postalCode}}",
+      "InactiveNumbers": [
+        "*jx-for(p.phoneNumbers) as ph",
+        "{{ph.type}}: {{ph.number}}"
+      ]
+    }
+  ]
+}

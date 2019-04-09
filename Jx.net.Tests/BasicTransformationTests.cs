@@ -5,10 +5,10 @@ using Newtonsoft.Json.Linq;
 namespace Jx.net.Tests
 {
     [TestClass]
-    public class BasicTransformationTests
+    public class BasicMapperTests
     {
         [TestMethod]
-        public void TransformJson()
+        public void MapFromJson()
         {
             var input = "{ \"menu\": { \"popup\": { \"menuitem\": [ { \"value\": \"Open\", \"onclick\": \"OpenDoc()\" }, { \"value\": \"Close\", \"onclick\": \"CloseDoc()\" } ] } } }";
             var transformer = "{ \"result\": { \"Open\": \"#valueof($.menu.popup.menuitem[?(@.value=='Open')].onclick)\", \"Close\": \"#valueof($.menu.popup.menuitem[?(@.value=='Close')].onclick)\" } }";
