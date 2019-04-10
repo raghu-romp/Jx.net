@@ -8,8 +8,6 @@ using System.Text.RegularExpressions;
 namespace Jx.net.Extensions
 {
     public delegate void StringJtokenAction(string propertyValue, JToken stringProperty, JToken parentToken);
-    public delegate void StringPatternMatchJtokenAction(string propertyValue, JToken stringProperty, JToken parentToken, bool isPartialMatch);
-    public delegate void ForEachContainerAction(JArray arrayTemplate, JToken parentToken);
 
     public static class JTokenExtensions
     {
@@ -59,30 +57,30 @@ namespace Jx.net.Extensions
             return array;
         }
 
-        internal static JArray FindForEach(this JToken token, out string expression)
+        internal static JArray FindForEach(this JToken token, out string expression) {
+            return token.FindBlockTemplate(Patterns.JxFor, out expression);
+        }
+
+        internal static JArray FindBlockTemplate(this JToken token, Regex pattern, out string expression)
         {
-            if (token.Type == JTokenType.Object)
-            {
+            if (token.Type == JTokenType.Object) {
                 var jObj = (JObject)token;
                 foreach (var prop in jObj.Properties()) {
-                    var array = prop.Value.FindForEach(out expression);
+                    var array = prop.Value.FindBlockTemplate(pattern, out expression);
                     if (array != null) {
                         return array;
                     }
                 }
             }
-            else if (token.Type == JTokenType.Array)
-            {
+            else if (token.Type == JTokenType.Array) {
                 var array = (JArray)token;
                 if (IsJxForArray(array, out expression)) {
                     return array;
                 }
 
-                foreach (var item in array)
-                {
-                    var forEachArray = item.FindForEach(out expression);
-                    if (forEachArray != null)
-                    {
+                foreach (var item in array) {
+                    var forEachArray = item.FindBlockTemplate(pattern, out expression);
+                    if (forEachArray != null) {
                         return forEachArray;
                     }
                 }
@@ -91,33 +89,20 @@ namespace Jx.net.Extensions
             expression = string.Empty;
             return null;
 
-            bool IsJxForArray(JArray array, out string jxForExpression)
+            bool IsJxForArray(JArray array, out string templateExpression)
             {
                 var firstItem = array.Count > 0 ? array[0] : null;
-                if (firstItem != null && firstItem.Type == JTokenType.String)
-                {
+                if (firstItem != null && firstItem.Type == JTokenType.String) {
                     var value = firstItem.Value<string>();
-                    if (Patterns.JxFor.IsMatch(value))
-                    {
-                        jxForExpression = value;
+                    if (pattern.IsMatch(value)) {
+                        templateExpression = value;
                         return true;
                     }
                 }
 
-                jxForExpression = string.Empty;
+                templateExpression = string.Empty;
                 return false;
             }
         }
-
-        //public static void AllStringProperties(this JToken jtoken, Regex patternToMatch, stringPatternMatchJtokenAction action)
-        //{
-        //    jtoken.AllStrings((val, prop, parent) => {
-        //        if (patternToMatch.IsMatch(val)) {
-        //            var fullMatchPattern = $"^{patternToMatch.ToString()}$";
-        //            var fullMatchRegex = new Regex(fullMatchPattern);
-        //            action(val, prop, parent, !fullMatchRegex.IsMatch(val));
-        //        }
-        //    });
-        //}
     }
 }

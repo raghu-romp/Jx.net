@@ -1,0 +1,18 @@
+[
+  "*jx-for($.people) as p",
+  {
+    "FullName": "{{p.firstName}} {{p.lastName}}",
+    "Address": [
+      "*jx-if(p.address exists)",
+      {
+        "Line1": "#{{p.address.streetAddress}}, {{p.address.city}}",
+        "Line2": "{{p.address.state}}, {{p.address.postalCode}}"
+      },
+      "-- Address Not Given --"
+    ],
+    "Mobile": [
+      "*jx-if(p.phoneNumbers[?(@.type == 'mobile')] not-exists)",
+      "-- Mobile Number Required for {{p.lastName}} --"
+    ]
+  }
+]

@@ -25,38 +25,57 @@ namespace Jx.net.Transformer
             return output;
         }
 
-        private JToken RenderNode(JToken transformer, Context context)
-        {
+        private JToken RenderNode(JToken transformer, Context context) {
             var output = transformer.DeepClone();
             currentCtx = context;
 
-            JArray forEachArray = null;
-            int iterations = 0;
-            do {
-                forEachArray = output.FindForEach(out var expression);
-                
-                if (forEachArray != null) {
-                    RenderForEach(forEachArray, forEachArray.Parent, expression);
-                }
-            } while (forEachArray != null && iterations++ < MaxIterations);
+            ProcessForEachTemplates(output);
+            ProcessIfTemplates(output);
+            output = ResolveInterpolations(output);
 
+            return output;
+        }
+
+        private JToken ResolveInterpolations(JToken output) {
             output.AllStrings((value, token, parent) => {
                 var resolvedValue = Resolve(value);
                 if (parent != null) {
                     if (parent.Type == JTokenType.Property)
                         ((JProperty)parent).Value = resolvedValue;
-                }
-                else {
+                } else {
                     output = JToken.FromObject(resolvedValue);
                 }
             });
-
             return output;
         }
 
-        private void RenderForEach(JArray jsForArray, JToken parentToken, string expression) {
+        private void ProcessIfTemplates(JToken output) {
+            var iterations = 0;
+            JArray ifTemplate;
+            do {
+                ifTemplate = output.FindForEach(out var expression);
+
+                if (ifTemplate != null) {
+                    RenderForEach(ifTemplate, expression);
+                }
+            } while (ifTemplate != null && iterations++ < MaxIterations);
+        }
+
+        private void ProcessForEachTemplates(JToken output) {
+            var iterations = 0;
+            JArray forEachArray;
+            do {
+                forEachArray = output.FindForEach(out var expression);
+
+                if (forEachArray != null) {
+                    RenderForEach(forEachArray, expression);
+                }
+            } while (forEachArray != null && iterations++ < MaxIterations);
+        }
+
+        private void RenderForEach(JArray jsForArray, string expression) {
             var parsedExpression = Patterns.JxFor.Match(expression);
-            var query = parsedExpression.Groups["placeholder"].Value;
+            var query = parsedExpression.Groups["query"].Value;
             var alias = parsedExpression.Groups["alias"].Success ? parsedExpression.Groups["alias"].Value : "";
             var context = FindContext(query, out var jPath);
             var tokens = context.Node.SelectTokens(jPath, !SuppressErrors);
@@ -74,29 +93,25 @@ namespace Jx.net.Transformer
                 var outerContext = currentCtx;
                 for (int index = 0; index < sourceArray.Count; index++) {
                     var iterationNode = sourceArray[index];
-                    var newContext = new Context { Index = index, Node = iterationNode, Parent = outerContext };
-                    if (!string.IsNullOrWhiteSpace(alias)) {
-                        this.namedContext[alias] = newContext;
-                    }
+                    var newContext = Context.New(iterationNode, outerContext, index);
+                    this.namedContext[alias] = newContext;
                     var rendered = RenderNode(template, newContext);
                     jsForArray.Add(rendered);
                 }
 
                 currentCtx = outerContext;
-                if (string.IsNullOrWhiteSpace(alias)) {
-                    this.namedContext.Remove(alias);
-                }
+                this.namedContext.Remove(alias);
             }
         }
 
         internal dynamic Resolve(string str)
         {
             return Patterns.Interpolation.Replace(str, match => {
-                var placeholder = match.Groups["placeholder"].Value;
-                var ctx = FindContext(placeholder, out var jPath);
+                var query = match.Groups["query"].Value;
+                var ctx = FindContext(query, out var jPath);
 
                 if (ctx == null || !ctx.Node.TrySelectToken(jPath, out var matchToken)) {
-                    return $"[{placeholder}]";
+                    return $"[{query}]";
                 }
 
                 var val = string.Empty;
@@ -106,10 +121,9 @@ namespace Jx.net.Transformer
             });
         }
 
-        private Context FindContext(string placeholder, out string jPath)
+        private Context FindContext(string query, out string jPath)
         {
-            var parts = placeholder.Split('.');
-            var firstPart = placeholder.SplitFirst(".", out var rest);
+            var firstPart = query.SplitFirst(".", out var rest);
             Context context = null;
 
             bool Check(string prefix, Context c) {
@@ -127,7 +141,7 @@ namespace Jx.net.Transformer
             if (Check("$", root) || Check("@ctx", currentCtx) || CheckNamed(firstPart)) {
                 jPath = string.Join(".", new []{ "$", rest });
             } else {
-                jPath = placeholder;
+                jPath = query;
             }
 
             return context;

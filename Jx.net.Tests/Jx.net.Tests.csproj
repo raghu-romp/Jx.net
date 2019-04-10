@@ -35,6 +35,9 @@
     <None Update="tests\basic\transformer.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="tests\jx-if-exists\source.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="tests\multiple-jx-for\expected.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
