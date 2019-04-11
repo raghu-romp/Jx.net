@@ -23,13 +23,13 @@ namespace Jx.net.Tests
         }
 
         [TestMethod]
-        public void BasicTest()
+        public void BasicJPath()
         {
             TestUseCase("basic");
         }
 
         [TestMethod]
-        public void JxForTest()
+        public void JxFor()
         {
             TestUseCase("jx-for");
         }
