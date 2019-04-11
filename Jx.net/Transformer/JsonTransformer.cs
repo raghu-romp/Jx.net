@@ -53,10 +53,10 @@ namespace Jx.net.Transformer
             var iterations = 0;
             JArray ifTemplate;
             do {
-                ifTemplate = output.FindForTemplate(out var expression);
+                ifTemplate = output.FindIfTemplate(out var match);
 
                 if (ifTemplate != null) {
-                    RenderForEach(ifTemplate, expression);
+                    RenderIfTemplate(ifTemplate, match);
                 }
             } while (ifTemplate != null && iterations++ < MaxIterations);
         }
@@ -65,18 +65,21 @@ namespace Jx.net.Transformer
             var iterations = 0;
             JArray forEachArray;
             do {
-                forEachArray = output.FindForTemplate(out var expression);
+                forEachArray = output.FindForTemplate(out var match);
 
                 if (forEachArray != null) {
-                    RenderForEach(forEachArray, expression);
+                    RenderForTemplate(forEachArray, match);
                 }
             } while (forEachArray != null && iterations++ < MaxIterations);
         }
 
-        private void RenderForEach(JArray jsForArray, string expression) {
-            var parsedExpression = Patterns.JxFor.Match(expression);
-            var query = parsedExpression.Groups["query"].Value;
-            var alias = parsedExpression.Groups["alias"].Success ? parsedExpression.Groups["alias"].Value : "";
+        private void RenderIfTemplate(JArray forEachArray, Match match) {
+            
+        }
+
+        private void RenderForTemplate(JArray jsForArray, Match match) {
+            var query = match.Groups["query"].Value;
+            var alias = match.Groups["alias"].Value;
             var context = FindContext(query, out var jPath);
             var tokens = context.Node.SelectTokens(jPath, !SuppressErrors);
 

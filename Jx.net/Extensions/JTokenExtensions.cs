@@ -57,20 +57,20 @@ namespace Jx.net.Extensions
             return array;
         }
 
-        internal static JArray FindForTemplate(this JToken token, out string expression) {
-            return token.FindBlockTemplate(Patterns.JxFor, out expression);
+        internal static JArray FindForTemplate(this JToken token, out Match match) {
+            return token.FindBlockTemplate(Patterns.JxFor, out match);
         }
 
-        internal static JArray FindIfTemplate(this JToken token, out string expression) {
-            return token.FindBlockTemplate(Patterns.JxIf, out expression);
+        internal static JArray FindIfTemplate(this JToken token, out Match match) {
+            return token.FindBlockTemplate(Patterns.JxIf, out match);
         }
 
-        internal static JArray FindBlockTemplate(this JToken token, Regex pattern, out string expression)
+        internal static JArray FindBlockTemplate(this JToken token, Regex pattern, out Match match)
         {
             if (token.Type == JTokenType.Object) {
                 var jObj = (JObject)token;
                 foreach (var prop in jObj.Properties()) {
-                    var array = prop.Value.FindBlockTemplate(pattern, out expression);
+                    var array = prop.Value.FindBlockTemplate(pattern, out match);
                     if (array != null) {
                         return array;
                     }
@@ -78,33 +78,34 @@ namespace Jx.net.Extensions
             }
             else if (token.Type == JTokenType.Array) {
                 var array = (JArray)token;
-                if (IsBlockTemplateArray(array, out expression)) {
+                if (IsBlockTemplateArray(array, out match)) {
                     return array;
                 }
 
                 foreach (var item in array) {
-                    var forEachArray = item.FindBlockTemplate(pattern, out expression);
+                    var forEachArray = item.FindBlockTemplate(pattern, out match);
                     if (forEachArray != null) {
                         return forEachArray;
                     }
                 }
             }
 
-            expression = string.Empty;
+            match = null;
             return null;
 
-            bool IsBlockTemplateArray(JArray array, out string templateExpression)
+            bool IsBlockTemplateArray(JArray array, out Match templateMatch)
             {
                 var firstItem = array.Count > 0 ? array[0] : null;
                 if (firstItem != null && firstItem.Type == JTokenType.String) {
                     var value = firstItem.Value<string>();
-                    if (pattern.IsMatch(value)) {
-                        templateExpression = value;
+                    var patternMatch = pattern.Match(value);
+                    if (patternMatch.Success) {
+                        templateMatch = patternMatch;
                         return true;
                     }
                 }
 
-                templateExpression = string.Empty;
+                templateMatch = null;
                 return false;
             }
         }
