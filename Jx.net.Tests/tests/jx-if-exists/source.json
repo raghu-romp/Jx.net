@@ -31,32 +31,6 @@
         {
           "type": "home",
           "number": "927 599-3033"
-        },
-        {
-          "type": "mobile",
-          "number": "862 447-3703"
-        }
-      ]
-    },
-    {
-      "firstName": "Hodges",
-      "lastName": "Giles",
-      "isAlive": true,
-      "age": 65,
-      "address": {
-        "streetAddress": "Stuyvesant Avenue",
-        "city": "Makena",
-        "state": "Washington",
-        "postalCode": 8024
-      },
-      "phoneNumbers": [
-        {
-          "type": "home",
-          "number": "808 486-2959"
-        },
-        {
-          "type": "mobile",
-          "number": "899 404-3948"
         }
       ]
     }

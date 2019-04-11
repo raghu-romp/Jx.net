@@ -40,6 +40,11 @@ namespace Jx.net.Tests
             TestUseCase("multiple-jx-for");
         }
 
+        [TestMethod]
+        public void JxIf() {
+            TestUseCase("jx-if-exists");
+        }
+
         private void TestUseCase(string name)
         {
             var testPath = Path.Combine(testsRootPath, name);
@@ -50,7 +55,7 @@ namespace Jx.net.Tests
             var jx = new JsonTransformer();
             var actual = jx.Transform(source, transformer);
 
-            Assert.IsTrue(JToken.DeepEquals(expected, actual), $"Test Case: {testPath}");
+            Assert.IsTrue(JToken.DeepEquals(expected, actual), $"Actual: {actual}");
         }
 
         private JToken ReadFile(string fileName)

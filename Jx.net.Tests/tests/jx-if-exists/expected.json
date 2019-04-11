@@ -1,12 +1,14 @@
 [
   {
     "FullName": "Heidi Coffey",
-    "Address": "-- Address Not Given --",
-    "Mobile": "902 439-2165"
+    "Address": "Address not found. This is example of branch rendering based on condition"
   },
   {
     "FullName": "Colon Murphy",
-    "Address": "#Clifford Place, Greenock, Colorado, 9922",
-    "Mobile": "-- Mobile Number Required from Murphy --"
+    "Address": {
+      "Line1": "#Clifford Place, Greenock",
+      "Line2": "Colorado, 9922"
+    },
+    "Mobile": "If you see this, mobile number doesn't exist. This is example of optional rendering"
   }
 ]

@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -56,7 +57,7 @@ namespace Jx.net.Transformer
                 ifTemplate = output.FindIfTemplate(out var match);
 
                 if (ifTemplate != null) {
-                    RenderIfTemplate(ifTemplate, match);
+                    RenderIfTemplate(ifTemplate, ifTemplate.Parent, match);
                 }
             } while (ifTemplate != null && iterations++ < MaxIterations);
         }
@@ -73,8 +74,25 @@ namespace Jx.net.Transformer
             } while (forEachArray != null && iterations++ < MaxIterations);
         }
 
-        private void RenderIfTemplate(JArray forEachArray, Match match) {
-            
+        private void RenderIfTemplate(JArray ifTemplate, JToken parent, Match match) {
+            var query = match.Groups["query"].Value;
+            var condition = match.Groups["condition"].Value;
+            var context = FindContext(query, out var jPath);
+            var queryTokens = context.Node.SelectTokens(jPath);
+            var exists = queryTokens.Any();
+            var truthy = (exists && condition == "exists") || (!exists && condition == "not-exists");
+            var template = truthy ? ifTemplate[1] 
+                : ifTemplate.Count > 2 ? ifTemplate[2] 
+                : null;
+            if (template == null) {
+                if (ifTemplate.Parent.Type == JTokenType.Property)
+                    ifTemplate.Parent.Remove();
+            }
+            else {
+                var rendered = RenderNode(template, currentCtx);
+                if (ifTemplate.Parent.Type == JTokenType.Property)
+                    ((JProperty)ifTemplate.Parent).Value = rendered;
+            }
         }
 
         private void RenderForTemplate(JArray jsForArray, Match match) {
@@ -141,7 +159,7 @@ namespace Jx.net.Transformer
                 return this.namedContext.TryGetValue(name, out context);
             }
 
-            if (Check("$", root) || Check("@ctx", currentCtx) || CheckNamed(firstPart)) {
+            if (Check("$", root) || CheckNamed(firstPart)) {
                 jPath = string.Join(".", new []{ "$", rest });
             } else {
                 jPath = query;
