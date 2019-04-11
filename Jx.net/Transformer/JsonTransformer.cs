@@ -53,7 +53,7 @@ namespace Jx.net.Transformer
             var iterations = 0;
             JArray ifTemplate;
             do {
-                ifTemplate = output.FindForEach(out var expression);
+                ifTemplate = output.FindForTemplate(out var expression);
 
                 if (ifTemplate != null) {
                     RenderForEach(ifTemplate, expression);
@@ -65,7 +65,7 @@ namespace Jx.net.Transformer
             var iterations = 0;
             JArray forEachArray;
             do {
-                forEachArray = output.FindForEach(out var expression);
+                forEachArray = output.FindForTemplate(out var expression);
 
                 if (forEachArray != null) {
                     RenderForEach(forEachArray, expression);
@@ -84,7 +84,7 @@ namespace Jx.net.Transformer
                 return;
             }
 
-            var sourceArray = tokens.ConvertToJArray();
+            var sourceArray = tokens.FlattenArray();
 
             var template = jsForArray[1];
             jsForArray.RemoveAll();

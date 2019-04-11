@@ -31,10 +31,10 @@ namespace Jx.net.Extensions
             }
         }
 
-        public static JArray ConvertToJArray(this IEnumerable<JToken> tokens) {
+        public static JArray FlattenArray(this IEnumerable<JToken> tokens) {
             JArray array = null;
 
-            void IfNullAssign(JToken t, Action a = null) {
+            void IfTargetArrayNull(JToken t, Action a = null) {
                 if (array == null) {
                     array = (JArray)t;
                 } else {
@@ -44,12 +44,12 @@ namespace Jx.net.Extensions
 
             foreach (var token in tokens) {
                 if (token.Type == JTokenType.Array) {
-                    IfNullAssign(token, () => {
+                    IfTargetArrayNull(token, () => {
                         var newArray = (JArray)token;
                         newArray.Each(elm => array.Add(elm));
                     });
                 } else {
-                    IfNullAssign(new JArray());
+                    IfTargetArrayNull(new JArray());
                     array.Add(token);
                 }
             }
@@ -57,8 +57,12 @@ namespace Jx.net.Extensions
             return array;
         }
 
-        internal static JArray FindForEach(this JToken token, out string expression) {
+        internal static JArray FindForTemplate(this JToken token, out string expression) {
             return token.FindBlockTemplate(Patterns.JxFor, out expression);
+        }
+
+        internal static JArray FindIfTemplate(this JToken token, out string expression) {
+            return token.FindBlockTemplate(Patterns.JxIf, out expression);
         }
 
         internal static JArray FindBlockTemplate(this JToken token, Regex pattern, out string expression)
@@ -74,7 +78,7 @@ namespace Jx.net.Extensions
             }
             else if (token.Type == JTokenType.Array) {
                 var array = (JArray)token;
-                if (IsJxForArray(array, out expression)) {
+                if (IsBlockTemplateArray(array, out expression)) {
                     return array;
                 }
 
@@ -89,7 +93,7 @@ namespace Jx.net.Extensions
             expression = string.Empty;
             return null;
 
-            bool IsJxForArray(JArray array, out string templateExpression)
+            bool IsBlockTemplateArray(JArray array, out string templateExpression)
             {
                 var firstItem = array.Count > 0 ? array[0] : null;
                 if (firstItem != null && firstItem.Type == JTokenType.String) {
