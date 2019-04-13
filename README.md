@@ -1,3 +1,5 @@
-# Jx.net
-A simple conventions-based json library for transforming json from one structure to different structure and transform content using built-in value mappers.
+#Jx.net
+A simple, yet powerful json-to-json transformation library to effortlessly transform your json from one structure to another.
+
+Jx.net 
 

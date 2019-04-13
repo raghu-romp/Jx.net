@@ -60,7 +60,7 @@ namespace Jx.net.Tests
             var jx = JxFactory.Create();
             var actual = jx.Transform(source, transformer);
 
-            Assert.IsTrue(JToken.DeepEquals(expected, actual), $"Actual: {actual}");
+            Assert.IsTrue(JToken.DeepEquals(expected, actual), $"Expected: {expected}\nActual: {actual}");
         }
 
         private JToken ReadFile(string fileName)

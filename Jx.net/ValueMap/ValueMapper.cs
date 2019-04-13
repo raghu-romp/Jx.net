@@ -39,7 +39,7 @@ namespace Jx.net
                 throw new KeyNotFoundException($"Mapper with name '{mapperName}' is not found in registered mappers");
             }
 
-            return this.Mappers[mapperName].MapValue(fromValue);
+            return this.Mappers[mapperName].Process(fromValue);
         }
     }
 }

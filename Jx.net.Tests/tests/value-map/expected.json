@@ -1,7 +1,7 @@
 {
   "FullName": "John Smith",
   "IsAlive": "Yes",
-  "mobileJsonObject": {
+  "primaryContact": {
     "type": "mobile",
     "number": "123 456-7890"
   }

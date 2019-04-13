@@ -35,9 +35,9 @@ namespace Jx.net.ValueMap
             this.dictionaryMapper = new DictionaryMapper(this.MapperName, valueMapping);
         }
 
-        public dynamic MapValue(dynamic fromValue)
+        public dynamic Process(dynamic fromValue)
         {
-            return this.dictionaryMapper.MapValue(fromValue);
+            return this.dictionaryMapper.Process(fromValue);
         }
     }
 }

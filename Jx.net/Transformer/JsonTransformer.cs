@@ -149,19 +149,19 @@ namespace Jx.net.Transformer
             if (val is JValue) {
                 val = ((JValue)val).Value;
             }
-            val = ProcessIntoPipes(pipes, val);
+            val = ProcessPipes(pipes, val);
 
             return val;
         }
 
-        private dynamic ProcessIntoPipes(List<string> pipeNames, dynamic val) {
+        private dynamic ProcessPipes(List<string> pipeNames, dynamic val) {
 
             pipeNames.ForEach(pipeName => {
                 if (!this.Mappers.TryGetValue(pipeName, out var pipe)) {
                     throw new NullReferenceException($"{pipeName} not a registered {nameof(IValuePipe)}");
                 }
 
-                val = pipe.MapValue(val);
+                val = pipe.Process(val);
             });
 
             return val;

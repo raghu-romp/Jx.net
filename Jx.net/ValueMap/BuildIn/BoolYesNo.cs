@@ -8,7 +8,7 @@ namespace Jx.net.ValueMap.BuildIn
     {
         public string MapperName => nameof(BoolYesNo);
 
-        public dynamic MapValue(dynamic fromValue) {
+        public dynamic Process(dynamic fromValue) {
             if (fromValue is null) {
                 return null;
             }

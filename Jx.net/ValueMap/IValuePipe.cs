@@ -7,6 +7,6 @@ namespace Jx.net
     public interface IValuePipe
     {
         string MapperName { get; }
-        dynamic MapValue(dynamic fromValue);
+        dynamic Process(dynamic fromValue);
     }
 }

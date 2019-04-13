@@ -15,7 +15,7 @@ namespace Jx.net.ValueMap
             this.Mapping = mapping;
         }
 
-        public dynamic MapValue(dynamic fromValue)
+        public dynamic Process(dynamic fromValue)
         {
             if (fromValue == null) {
                 return null;

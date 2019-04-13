@@ -14,7 +14,7 @@ namespace Jx.net.ValueMap
             this.MapFunction = func;
         }
 
-        public dynamic MapValue(dynamic fromValue)
+        public dynamic Process(dynamic fromValue)
         {
             return this.MapFunction(fromValue);
         }
