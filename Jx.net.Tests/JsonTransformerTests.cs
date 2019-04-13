@@ -45,6 +45,11 @@ namespace Jx.net.Tests
             TestUseCase("jx-if-exists");
         }
 
+        [TestMethod]
+        public void boolYesNo() {
+            TestUseCase("value-map");
+        }
+
         private void TestUseCase(string name)
         {
             var testPath = Path.Combine(testsRootPath, name);
@@ -52,7 +57,7 @@ namespace Jx.net.Tests
             var transformer = ReadFile(Path.Combine(testPath, "transformer.json"));
             var expected = ReadFile(Path.Combine(testPath, "expected.json"));
 
-            var jx = new JsonTransformer();
+            var jx = JxFactory.Create();
             var actual = jx.Transform(source, transformer);
 
             Assert.IsTrue(JToken.DeepEquals(expected, actual), $"Actual: {actual}");

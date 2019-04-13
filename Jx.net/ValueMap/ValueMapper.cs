@@ -6,21 +6,21 @@ namespace Jx.net
 {
     public class ValueMapper
     {
-        public Dictionary<string, IValueMap> Mappers { get; }
+        public Dictionary<string, IValuePipe> Mappers { get; }
         public bool ReturnNullIfNoMappingFound { get; set; } = false;
 
         public ValueMapper()
         {
-            this.Mappers = new Dictionary<string, IValueMap>();
+            this.Mappers = new Dictionary<string, IValuePipe>();
         }
         
-        public void RegisterMapper(IValueMap map)
+        public void RegisterMapper(IValuePipe map)
         {
-            if (Mappers.ContainsKey(map.MappingName)) {
-                throw new ArgumentException($"Mapper with name '{map.MappingName}' already registered");
+            if (Mappers.ContainsKey(map.MapperName)) {
+                throw new ArgumentException($"Mapper with name '{map.MapperName}' already registered");
             }
 
-            Mappers.Add(map.MappingName, map);
+            Mappers.Add(map.MapperName, map);
         }
 
         public void UnregisterMapper(string mapperName)

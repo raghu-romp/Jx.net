@@ -20,7 +20,7 @@ namespace Jx.net.Tests
             var input = "{\r\n  \"currencies\": [ \"US Dollar\", \"Euro\" ]\r\n}";
             var transformer = "{\r\n\t\"transformed\": {\r\n\t\t\"#loop($.currencies)\": {\r\n\t\t\t\"Name\": \"#currentvalueatpath($)\",\r\n\t\t\t\"Code\": \"#MapValue(CurrencyCodeMapper,#currentvalueatpath($))\"\r\n\t\t}\r\n\t}\r\n}";
             var expected = "{\r\n  \"transformed\": [\r\n    {\r\n      \"Name\": \"US Dollar\",\r\n      \"Code\": \"USD\"\r\n    },\r\n    {\r\n      \"Name\": \"Euro\",\r\n      \"Code\": \"EUR\"\r\n    }\r\n  ]\r\n}";
-            var dictionaryMapper = new DictionaryMapper("CurrencyCodeMapper", new Dictionary<string, dynamic>
+            var dictionaryMapper = new DictionaryMapper("CurrencyCodeMapper", new Dictionary<dynamic, dynamic>
             {
                 { "US Dollar", "USD" }, { "Indian Rupee", "INR" }, { "Euro", "EUR" }
             });

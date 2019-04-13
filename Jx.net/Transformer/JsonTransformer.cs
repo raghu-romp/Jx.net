@@ -8,19 +8,18 @@ using System.Text.RegularExpressions;
 
 namespace Jx.net.Transformer
 {
-    public class JsonTransformer
+    public class JsonTransformer : IJsonTransformer
     {
-        internal const int MaxIterations = 100;
+        public bool SuppressErrors { get; set; } = false;
+        internal Dictionary<string, IValuePipe> Mappers { get; private set; } = new Dictionary<string, IValuePipe>();
+
+        private const int MaxIterations = 100;
 
         private Context root;
         private Context currentCtx;
-
-        public bool SuppressErrors { get; set; } = false;
-
         private readonly Dictionary<string, Context> namedContext = new Dictionary<string, Context>();
-        
-        public JToken Transform(JToken source, JToken transformer)
-        {
+
+        public JToken Transform(JToken source, JToken transformer) {
             root = new Context { Node = source };
             var output = RenderNode(transformer, root);
             return output;
@@ -81,14 +80,13 @@ namespace Jx.net.Transformer
             var queryTokens = context.Node.SelectTokens(jPath);
             var exists = queryTokens.Any();
             var truthy = (exists && condition == "exists") || (!exists && condition == "not-exists");
-            var template = truthy ? ifTemplate[1] 
-                : ifTemplate.Count > 2 ? ifTemplate[2] 
+            var template = truthy ? ifTemplate[1]
+                : ifTemplate.Count > 2 ? ifTemplate[2]
                 : null;
             if (template == null) {
                 if (ifTemplate.Parent.Type == JTokenType.Property)
                     ifTemplate.Parent.Remove();
-            }
-            else {
+            } else {
                 var rendered = RenderNode(template, currentCtx);
                 if (ifTemplate.Parent.Type == JTokenType.Property)
                     ((JProperty)ifTemplate.Parent).Value = rendered;
@@ -125,25 +123,62 @@ namespace Jx.net.Transformer
             }
         }
 
-        internal dynamic Resolve(string str)
-        {
-            return Patterns.Interpolation.Replace(str, match => {
-                var query = match.Groups["query"].Value;
-                var ctx = FindContext(query, out var jPath);
-
-                if (ctx == null || !ctx.Node.TrySelectToken(jPath, out var matchToken)) {
-                    return $"[{query}]";
-                }
-
-                var val = string.Empty;
-                val = matchToken.Value<dynamic>();
-
-                return val;
-            });
+        internal dynamic Resolve(string str) {
+            var match = Patterns.Interpolation.Match(str);
+            if (match.Success && match.Value == str) {
+                return Interpolate(match);
+            }
+            else {
+                return Patterns.Interpolation.Replace(str, m => {
+                    var val = Interpolate(m);
+                    return val is null ? string.Empty : val.ToString();
+                });
+            }
         }
 
-        private Context FindContext(string query, out string jPath)
-        {
+        private dynamic Interpolate(Match match) {
+            var query = match.Groups["query"].Value;
+            var pipes = GetPipes(match);
+            var ctx = FindContext(query, out var jPath);
+
+            if (ctx == null || !ctx.Node.TrySelectToken(jPath, out var matchToken)) {
+                return $"[{query}]";
+            }
+
+            var val = matchToken.Value<dynamic>();
+            if (val is JValue) {
+                val = ((JValue)val).Value;
+            }
+            val = ProcessIntoPipes(pipes, val);
+
+            return val;
+        }
+
+        private dynamic ProcessIntoPipes(List<string> pipeNames, dynamic val) {
+
+            pipeNames.ForEach(pipeName => {
+                if (!this.Mappers.TryGetValue(pipeName, out var pipe)) {
+                    throw new NullReferenceException($"{pipeName} not a registered {nameof(IValuePipe)}");
+                }
+
+                val = pipe.MapValue(val);
+            });
+
+            return val;
+        }
+
+        private List<string> GetPipes(Match match) {
+            var pipes = new List<string>();
+            if (match.Groups["pipes"].Success) {
+                foreach (Capture capture in match.Groups["pipe"].Captures) {
+                    pipes.Add(capture.Value);
+                }
+            }
+
+            return pipes;
+        }
+
+        private Context FindContext(string query, out string jPath) {
             var firstPart = query.SplitFirst(".", out var rest);
             Context context = null;
 
@@ -160,7 +195,7 @@ namespace Jx.net.Transformer
             }
 
             if (Check("$", root) || CheckNamed(firstPart)) {
-                jPath = string.Join(".", new []{ "$", rest });
+                jPath = string.Join(".", new[] { "$", rest });
             } else {
                 jPath = query;
             }

@@ -6,20 +6,20 @@ using System.Text;
 
 namespace Jx.net.ValueMap
 {
-    public class DataReaderValueMap : IValueMap
+    public class DataReaderValueMap : IValuePipe
     {
-        public string MappingName { get; }
+        public string MapperName { get; }
         private DictionaryMapper dictionaryMapper;
 
         public DataReaderValueMap(string name, IDataReader reader, string fromColumn, string toColumn)
         {
-            this.MappingName = name;
+            this.MapperName = name;
             this.BuildMap(reader, fromColumn, toColumn);
         }
 
         private void BuildMap(IDataReader reader, string fromColumn, string toColumn)
         {
-            var valueMapping = new Dictionary<string, dynamic>();
+            var valueMapping = new Dictionary<dynamic, dynamic>();
 
             while (reader.Read())
             {
@@ -32,10 +32,10 @@ namespace Jx.net.ValueMap
                 valueMapping.Add(fromValue, toValue);
             }
 
-            this.dictionaryMapper = new DictionaryMapper(this.MappingName, valueMapping);
+            this.dictionaryMapper = new DictionaryMapper(this.MapperName, valueMapping);
         }
 
-        public dynamic MapValue(string fromValue)
+        public dynamic MapValue(dynamic fromValue)
         {
             return this.dictionaryMapper.MapValue(fromValue);
         }

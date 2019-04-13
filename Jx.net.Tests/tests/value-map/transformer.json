@@ -1,0 +1,5 @@
+{
+  "FullName": "{{$.firstName}} {{$.lastName}}",
+  "IsAlive": "{{$.isAlive => BoolYesNo}}",
+  "mobileJsonObject": "{{$.phoneNumbers[?(@.type == 'mobile')]}}"
+}

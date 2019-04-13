@@ -4,17 +4,17 @@ using System.Text;
 
 namespace Jx.net.ValueMap
 {
-    public class LambdaValueMap : IValueMap
+    public class LambdaPipe : IValuePipe
     {
-        public string MappingName { get; }
+        public string MapperName { get; }
         public Func<dynamic, string> MapFunction { get; set; }
 
-        public LambdaValueMap(string name, Func<dynamic, string> func)
+        public LambdaPipe(string name, Func<dynamic, string> func)
         {
             this.MapFunction = func;
         }
 
-        public dynamic MapValue(string fromValue)
+        public dynamic MapValue(dynamic fromValue)
         {
             return this.MapFunction(fromValue);
         }
