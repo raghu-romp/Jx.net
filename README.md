@@ -1,4 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/7a6ncfn79vtl6upu?svg=true)](https://ci.appveyor.com/project/raghu-romp/jx-net)
+[![Build & Tests](https://ci.appveyor.com/api/projects/status/7a6ncfn79vtl6upu?svg=true)](https://ci.appveyor.com/project/raghu-romp/jx-net)
 
 
 #Jx.net
