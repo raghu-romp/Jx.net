@@ -2,11 +2,28 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>A simple, yet powerful json structure transformation library. Jx.net uses json based templates and commands that are easy to understand.</Description>
+    <Authors>Raghu Romp</Authors>
+    <Company>raghu-romp</Company>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/raghu-romp/Jx.net</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/raghu-romp/Jx.net</RepositoryUrl>
+    <PackageTags>JSON transform structure Newtonsoft json-to-json reshape change</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AssemblyVersion>1.0.19.0</AssemblyVersion>
+    <FileVersion>1.0.19.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
