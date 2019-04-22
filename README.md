@@ -130,6 +130,7 @@ Notice that because we removed the attribute `.number` from the `ContactNumber` 
 
 <details>
   <summary>Source Json (*click to expand*)</summary>
+	
 ```javascript
 {
   "people":
