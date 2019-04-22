@@ -39,10 +39,11 @@ Jx.net provides very few, but powerful commands to achieve your json transformat
 
 ## Examples
 
-Jx.net comes with well-tested examples available in the [GitHub repository](https://github.com/raghu-romp/Jx.net/tree/master/Jx.net.Tests/tests). Some of the basic transformation 
+Jx.net comes with well-tested examples available in the [GitHub repository](https://github.com/raghu-romp/Jx.net/tree/master/Jx.net.Tests/tests). Below are some examples of transformation. 
+
+*For improve readability and simplicity the statements JSON content are not stringified *
 
 #### 1. Interpolation 
-
 **Source**
 ```javascript
 var sourceJson = {
@@ -61,5 +62,12 @@ var templateJson =
 {
   "FullName": "{{$.firstName}} {{$.lastName}}",
   "Mobile": "{{$.phoneNumbers[?(@.type == 'mobile')].number}}"
+}
+```
+**Output**
+```javascript
+{
+  "FullName": "John Smith",
+  "Mobile": "123 456-7890"
 }
 ```
