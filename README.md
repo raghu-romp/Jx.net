@@ -111,7 +111,7 @@ Notice that because we removed the attribute `.number` from the `ContactNumber` 
 
 ```json
 [
-	"*jx-for (<path-to-jarray>) as <alias>",
+    "*jx-for (<path-to-jarray>) as <alias>",
     {
     	...mandatory-block-1
     }
