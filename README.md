@@ -6,7 +6,7 @@ A simple, yet powerful json structure transformation library. Jx.net uses json b
 
 ## Getting Started
 
-Jx.net is available as a NuGet package. It can be added to your project using Manage NuGet Packages option in Visual Studio or via the Package Management Console.
+Jx.net is available as a [NuGet package](https://www.nuget.org/packages/Jx.net/). It can be added to your project using Manage NuGet Packages option in Visual Studio or via the Package Management Console.
 
 ```
 Install-Package Jx.net
