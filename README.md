@@ -249,4 +249,3 @@ Notice that because we removed the attribute `.number` from the `ContactNumber` 
 
 Did you notice that the interpolation placeholders doesn't look like `JsonPath` anymore? The `JsonPath` typically starts with a `$` sign but in this case it starts with `p` which is the `alias` name to the iteration context of the `*jx-for` statement. This is a powerful feature of Jx.net as this allows you to write your transformation templates nested any any number of levels and still reference any parent context without having to worry about how deep you are in the json tree.
 
-Consider another example, where you need to iterate through an array, but still need to 
