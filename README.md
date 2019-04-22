@@ -44,8 +44,8 @@ Jx.net comes with well-tested examples available in the [GitHub repository](http
 #### 1. Interpolation 
 
 **Source**
-```json
-{
+```javascript
+var sourceJson = {
   "firstName": "John",
   "lastName": "Smith",
   "isAlive": true,
@@ -56,7 +56,8 @@ Jx.net comes with well-tested examples available in the [GitHub repository](http
 }
 ```
 **Template**
-```json
+```javascript
+var templateJson = 
 {
   "FullName": "{{$.firstName}} {{$.lastName}}",
   "Mobile": "{{$.phoneNumbers[?(@.type == 'mobile')].number}}"
