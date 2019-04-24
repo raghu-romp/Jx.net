@@ -10,6 +10,10 @@ namespace Jx.net.Transformer
         public static readonly Regex Interpolation = new Regex(
                 "{{(?<query>.*?)(?<pipes> => ((?<pipe>.*?)))*}}");
 
+        public static readonly Regex Formula = new Regex(
+            @"=\[(?<expression>.*?)\]"
+        );
+
         public static readonly Regex JxFor = new Regex(
             @"^\*jx-for\((?<query>.*?)\) as (?<alias>[a-z][a-z0-9]{0,9})$"
         );
