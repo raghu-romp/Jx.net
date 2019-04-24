@@ -6,7 +6,7 @@ A simple, yet powerful json structure transformation library. Jx.net uses json b
 
 ## Getting Started
 
-Jx.net is available as a [NuGet package](https://www.nuget.org/packages/Jx.net/). It can be added to your project using Manage NuGet Packages option in Visual Studio or via the Package Management Console.
+Jx.net is available as a NuGet package. It can be added to your project using Manage NuGet Packages option in Visual Studio or via the Package Management Console.
 
 ```
 Install-Package Jx.net
@@ -111,7 +111,7 @@ Notice that because we removed the attribute `.number` from the `ContactNumber` 
 
 ```json
 [
-    "*jx-for (<path-to-jarray>) as <alias>",
+	"*jx-for (<path-to-jarray>) as <alias>",
     {
     	...mandatory-block-1
     }
@@ -130,7 +130,6 @@ Notice that because we removed the attribute `.number` from the `ContactNumber` 
 
 <details>
   <summary>Source Json (*click to expand*)</summary>
-	
 ```javascript
 {
   "people":
@@ -248,4 +247,139 @@ Notice that because we removed the attribute `.number` from the `ContactNumber` 
 </details>
 
 Did you notice that the interpolation placeholders doesn't look like `JsonPath` anymore? The `JsonPath` typically starts with a `$` sign but in this case it starts with `p` which is the `alias` name to the iteration context of the `*jx-for` statement. This is a powerful feature of Jx.net as this allows you to write your transformation templates nested any any number of levels and still reference any parent context without having to worry about how deep you are in the json tree.
+
+Consider another example, where you need to iterate through an the `phoneNumbers` array, but still need to interpolate `p.firstName`. This is as straight-forward as you could imagine.  See below the transformation template.
+
+```javascript
+  [
+	"*jx-for($.people[?(@.isAlive == false)]) as p",
+    {
+      "FullName": "{{p.firstName}} {{p.lastName}}",
+      "AddressLine1": "#{{p.address.streetAddress}}, {{p.address.city}}",
+      "AddressLine2": "{{p.address.state}}, {{p.address.postalCode}}",
+      "InactiveNumbers": [
+        "*jx-for(p.phoneNumbers) as ph",
+        "{{p.address.city}} {{ph.type}}: {{ph.number}}"
+      ]
+    }
+  ]
+  ```
+
+As you can see, accessing the parent iteration context is as natural as using it's alias name. Also anywhere you want to refer to the root json node, you could simply start your `JsonPath` expression with a `$` sign, which always represents the root node irrespective of how many levels deep under you are.
+
+#### 3. *jx-if statement
+
+*jx-if statement is another block statement that can process one or the other template based on existence (or non-existence) of a `JsonPath`. It can also be used to not render a branch of Json if the condition is not met. 
+
+As `*jx-if` statement is a block statement, as you guessed, it is represented in the transformation template as an array.
+
+```javascript
+[
+	"*jx-if(<json-path> <condition>)",
+    {
+    	true-block
+    },
+    {
+    	false-block
+    }
+]
+```
+
+Without further delay, let's see a quick example.
+
+<details>
+<summary>Source Json (click to expand)</summary>
+
+```javascript
+{
+  "people": [
+    {
+      "firstName": "Heidi",
+      "lastName": "Coffey",
+      "isAlive": true,
+      "age": 67,
+      "phoneNumbers": [
+        {
+          "type": "home",
+          "number": "827 406-2872"
+        },
+        {
+          "type": "mobile",
+          "number": "902 439-2165"
+        }
+      ]
+    },
+    {
+      "firstName": "Colon",
+      "lastName": "Murphy",
+      "isAlive": false,
+      "age": 56,
+      "address": {
+        "streetAddress": "Clifford Place",
+        "city": "Greenock",
+        "state": "Colorado",
+        "postalCode": 9922
+      },
+      "phoneNumbers": [
+        {
+          "type": "home",
+          "number": "927 599-3033"
+        }
+      ]
+    }
+  ]
+}
+```
+</details>
+
+In the above source Json, Heidi doesn't have an address and Colon doesn't have a mobile phone number. I would like to see the below output Json.
+
+
+```javascript
+[
+  {
+    "FullName": "Heidi Coffey",
+    "Address": "Address not found. This is example of branch rendering based on condition"
+  },
+  {
+    "FullName": "Colon Murphy",
+    "Address": {
+      "Line1": "#Clifford Place, Greenock",
+      "Line2": "Colorado, 9922"
+    },
+    "Mobile": "If you see this, mobile number doesn't exist. This is example of optional rendering"
+  }
+]
+```
+
+In order to achieve the above, we will need the following template.
+
+**Transformer**
+```javascript
+[
+  "*jx-for($.people) as p",
+  {
+    "FullName": "{{p.firstName}} {{p.lastName}}",
+    "Address": [
+      "*jx-if(p.address exists)",
+      {
+        "Line1": "#{{p.address.streetAddress}}, {{p.address.city}}",
+        "Line2": "{{p.address.state}}, {{p.address.postalCode}}"
+      },
+      "Address not found. This is example of branch rendering based on condition"
+    ],
+    "Mobile": [
+      "*jx-if(p.phoneNumbers[?(@.type == 'mobile')].number not-exists)",
+      "If you see this, mobile number doesn't exist. This is example of optional rendering"
+    ]
+  }
+]
+```
+
+As you can see, the `*jx-if` the element at `index 1` represents the truthy template and the element at `index 2` represents the falsey template. Also, as you can see in the second `*jx-if` example in the template `Mobile`, the falsey template is optional. This means that if the falsey template is not provided, the parent property will not be rendered at all. If you would like to return a `null` value for falsey path, you could do so by just making the element at `index 1` as just `null` (as natural as it should be).
+
+
+
+
+
 
