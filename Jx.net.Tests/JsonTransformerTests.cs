@@ -46,8 +46,13 @@ namespace Jx.net.Tests
         }
 
         [TestMethod]
-        public void boolYesNo() {
+        public void Pipe_BoolYesNo() {
             TestUseCase("value-map");
+        }
+
+        [TestMethod]
+        public void FormulaEvaluation() {
+            TestUseCase("formula-eval");
         }
 
         private void TestUseCase(string name)

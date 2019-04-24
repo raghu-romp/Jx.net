@@ -1,4 +1,5 @@
 ﻿using Jx.net.Extensions;
+using Jx.net.Formulas;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,8 @@ namespace Jx.net.Transformer
         private Context root;
         private Context currentCtx;
         private readonly Dictionary<string, Context> namedContext = new Dictionary<string, Context>();
+
+        private readonly IFormulaSolver formulaSolver = new FormulaSolver();
 
         public JToken Transform(JToken source, JToken transformer) {
             root = new Context { Node = source };
@@ -124,16 +127,34 @@ namespace Jx.net.Transformer
         }
 
         internal dynamic Resolve(string str) {
-            var match = Patterns.Interpolation.Match(str);
-            if (match.Success && match.Value == str) {
-                return Interpolate(match);
+            dynamic returnVal = Resolve(str, Patterns.Interpolation, (m) => Interpolate(m));
+
+            if (returnVal is string) {
+                str = returnVal;
+                returnVal = Resolve(str, Patterns.Formula, (m) => Eval(m));
             }
-            else {
-                return Patterns.Interpolation.Replace(str, m => {
-                    var val = Interpolate(m);
+
+            return returnVal;
+        }
+
+        private dynamic Resolve(string str, Regex pattern, Func<Match, dynamic> func) {
+            var match = pattern.Match(str);
+            dynamic returnVal = str;
+            if (match.Success && match.Value == str) {
+                returnVal = func(match);
+            } else {
+                returnVal = pattern.Replace(str, m => {
+                    var val = func(m);
                     return val is null ? string.Empty : val.ToString();
                 });
             }
+
+            return returnVal;
+        }
+
+        public dynamic Eval(Match m) {
+            var expression = m.Groups["expression"].Value;
+            return formulaSolver.Solve<dynamic>(expression, null);
         }
 
         private dynamic Interpolate(Match match) {

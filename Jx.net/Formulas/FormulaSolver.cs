@@ -1,4 +1,5 @@
 ﻿using Flee.PublicTypes;
+using Jx.net.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,14 +8,15 @@ namespace Jx.net.Formulas
 {
     public class FormulaSolver : IFormulaSolver
     {
-        private static ExpressionContext context = new ExpressionContext();
 
-        static FormulaSolver() {
-            context = CreateExpressionContext();
-        }
+        public T Solve<T>(string expression, Dictionary<string, dynamic> variables = null) {
+            var context = CreateExpressionContext();
+            if (variables != null) {
+                variables.Each(x => context.Variables[x.Key] = x.Value);
+            }
 
-        public T Solve<T>(string expression, Dictionary<string, dynamic> variables) {
-            throw new NotImplementedException();  
+            var compilied = context.CompileDynamic(expression);
+            return (T)compilied.Evaluate();
         }
 
         private static ExpressionContext CreateExpressionContext() {
