@@ -1,4 +1,4 @@
-[![Build & Tests](https://ci.appveyor.com/api/projects/status/7a6ncfn79vtl6upu?svg=true)](https://ci.appveyor.com/project/raghu-romp/jx-net)
+[![Build Status](https://raghu-romp.visualstudio.com/LeisureProjects/_apis/build/status/Jx.net%20build?branchName=master)](https://raghu-romp.visualstudio.com/LeisureProjects/_build/latest?definitionId=3&branchName=master)
 
 
 # Jx.net
