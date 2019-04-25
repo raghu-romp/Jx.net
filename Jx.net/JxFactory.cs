@@ -16,7 +16,7 @@ namespace Jx.net
         }
 
         private static void RegisterBuiltInMappers(JsonTransformer jx) {
-            jx.Mappers.Add(nameof(BoolYesNo), new BoolYesNo());
+            jx.pipes.Add(nameof(BoolYesNo), new BoolYesNo());
         }
     }
 }

@@ -1,0 +1,6 @@
+{
+  "ProductName": "{{$.Product}}",
+  "TotalCostFormula": "({{$.BasePrice}} + ( {{$.BasePrice}} * {{$.GST}} )) + {{$.Shipping}}",
+  "TotalCost": "=[ Cast(({{$.BasePrice}} + ( {{$.BasePrice}} * {{$.GST}} )) + {{$.Shipping}}, INT) ]",
+  "TotalCostCurrency": "$ =[ ({{$.BasePrice}} + ( {{$.BasePrice}} * {{$.GST}} )) + {{$.Shipping}} ]"
+}

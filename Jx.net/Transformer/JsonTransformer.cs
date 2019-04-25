@@ -1,4 +1,5 @@
 ﻿using Jx.net.Extensions;
+using Jx.net.Formulas;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -11,18 +12,23 @@ namespace Jx.net.Transformer
     public class JsonTransformer : IJsonTransformer
     {
         public bool SuppressErrors { get; set; } = false;
-        internal Dictionary<string, IValuePipe> Mappers { get; private set; } = new Dictionary<string, IValuePipe>();
-
-        private const int MaxIterations = 100;
+        internal Dictionary<string, IValuePipe> pipes = new Dictionary<string, IValuePipe>();
+        public int MaxIterations = 100;
 
         private Context root;
         private Context currentCtx;
         private readonly Dictionary<string, Context> namedContext = new Dictionary<string, Context>();
 
+        private readonly IFormulaSolver formulaSolver = new FormulaSolver();
+
         public JToken Transform(JToken source, JToken transformer) {
             root = new Context { Node = source };
             var output = RenderNode(transformer, root);
             return output;
+        }
+
+        public void AddPipe(IValuePipe pipe) {
+            this.pipes.Add(pipe.Name, pipe);
         }
 
         private JToken RenderNode(JToken transformer, Context context) {
@@ -124,16 +130,34 @@ namespace Jx.net.Transformer
         }
 
         internal dynamic Resolve(string str) {
-            var match = Patterns.Interpolation.Match(str);
-            if (match.Success && match.Value == str) {
-                return Interpolate(match);
+            dynamic returnVal = Resolve(str, Patterns.Interpolation, (m) => Interpolate(m));
+
+            if (returnVal is string) {
+                str = returnVal;
+                returnVal = Resolve(str, Patterns.Formula, (m) => Eval(m));
             }
-            else {
-                return Patterns.Interpolation.Replace(str, m => {
-                    var val = Interpolate(m);
+
+            return returnVal;
+        }
+
+        private dynamic Resolve(string str, Regex pattern, Func<Match, dynamic> func) {
+            var match = pattern.Match(str);
+            dynamic returnVal = str;
+            if (match.Success && match.Value == str) {
+                returnVal = func(match);
+            } else {
+                returnVal = pattern.Replace(str, m => {
+                    var val = func(m);
                     return val is null ? string.Empty : val.ToString();
                 });
             }
+
+            return returnVal;
+        }
+
+        private dynamic Eval(Match m) {
+            var expression = m.Groups["expression"].Value;
+            return formulaSolver.Solve<dynamic>(expression, null);
         }
 
         private dynamic Interpolate(Match match) {
@@ -157,7 +181,7 @@ namespace Jx.net.Transformer
         private dynamic ProcessPipes(List<string> pipeNames, dynamic val) {
 
             pipeNames.ForEach(pipeName => {
-                if (!this.Mappers.TryGetValue(pipeName, out var pipe)) {
+                if (!this.pipes.TryGetValue(pipeName, out var pipe)) {
                     throw new NullReferenceException($"{pipeName} not a registered {nameof(IValuePipe)}");
                 }
 
@@ -195,7 +219,7 @@ namespace Jx.net.Transformer
             }
 
             if (Check("$", root) || CheckNamed(firstPart)) {
-                jPath = string.Join(".", new[] { "$", rest });
+                jPath = string.IsNullOrEmpty(rest) ? "$" : string.Join(".", new[] { "$", rest });
             } else {
                 jPath = query;
             }

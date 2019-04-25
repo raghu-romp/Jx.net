@@ -5,13 +5,13 @@ namespace Jx.net.ValueMap
 {
     public class DictionaryMapper : IValuePipe
     {
-        public string MapperName { get; }
+        public string Name { get; }
         public IDictionary<dynamic, dynamic> Mapping { get; private set; }
         public dynamic Default { get; set; }
 
         public DictionaryMapper(string name, IDictionary<dynamic, dynamic> mapping)
         {
-            this.MapperName = name;
+            this.Name = name;
             this.Mapping = mapping;
         }
 

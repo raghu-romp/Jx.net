@@ -8,6 +8,7 @@ using Jx.net.Extensions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Jx.net.Transformer;
+using Jx.net.ValueMap;
 
 namespace Jx.net.Tests
 {
@@ -46,11 +47,27 @@ namespace Jx.net.Tests
         }
 
         [TestMethod]
-        public void boolYesNo() {
+        public void Pipe_BoolYesNo() {
             TestUseCase("value-map");
         }
 
-        private void TestUseCase(string name)
+        [TestMethod]
+        public void Pipe_DictTest() {
+            var map = new Dictionary<dynamic, dynamic> {
+                { "USD", "$" }, { "AUD", "A$" },
+                { "CAD", "C$" }, { "GBP", "£" }
+            };
+
+            var pipe = new DictionaryMapper("CcySymbol", map);
+            TestUseCase("value-map-dict", pipe);
+        }
+
+        [TestMethod]
+        public void FormulaEvaluation() {
+            TestUseCase("formula-eval");
+        }
+
+        private void TestUseCase(string name, IValuePipe pipe = null)
         {
             var testPath = Path.Combine(testsRootPath, name);
             var source = ReadFile(Path.Combine(testPath, "source.json"));
@@ -58,6 +75,10 @@ namespace Jx.net.Tests
             var expected = ReadFile(Path.Combine(testPath, "expected.json"));
 
             var jx = JxFactory.Create();
+            if (pipe != null) {
+                jx.AddPipe(pipe);
+            }
+
             var actual = jx.Transform(source, transformer);
 
             Assert.IsTrue(JToken.DeepEquals(expected, actual), $"Expected: {expected}\nActual: {actual}");
@@ -65,7 +86,7 @@ namespace Jx.net.Tests
 
         private JToken ReadFile(string fileName)
         {
-            var fileText = File.ReadAllText(fileName);
+            var fileText = File.ReadAllText(fileName, Encoding.UTF8);
             return JsonConvert.DeserializeObject<JToken>(fileText);
         }
     }
