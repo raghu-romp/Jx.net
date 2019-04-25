@@ -10,8 +10,8 @@ namespace Jx.net.Extensions
         {
             var index = str.IndexOf(separator);
             if (index < 0) {
-                rest = str;
-                return string.Empty;
+                rest = string.Empty;
+                return str;
             }
 
             var firstPart = str.Substring(0, index);

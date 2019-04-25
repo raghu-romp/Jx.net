@@ -65,6 +65,15 @@
     <None Update="tests\source.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="tests\value-map-dict\expected.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="tests\value-map-dict\source.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="tests\value-map-dict\transformer.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="tests\value-map\expected.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

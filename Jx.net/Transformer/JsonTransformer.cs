@@ -12,9 +12,8 @@ namespace Jx.net.Transformer
     public class JsonTransformer : IJsonTransformer
     {
         public bool SuppressErrors { get; set; } = false;
-        internal Dictionary<string, IValuePipe> Mappers { get; private set; } = new Dictionary<string, IValuePipe>();
-
-        private const int MaxIterations = 100;
+        internal Dictionary<string, IValuePipe> pipes = new Dictionary<string, IValuePipe>();
+        public int MaxIterations = 100;
 
         private Context root;
         private Context currentCtx;
@@ -26,6 +25,10 @@ namespace Jx.net.Transformer
             root = new Context { Node = source };
             var output = RenderNode(transformer, root);
             return output;
+        }
+
+        public void AddPipe(IValuePipe pipe) {
+            this.pipes.Add(pipe.Name, pipe);
         }
 
         private JToken RenderNode(JToken transformer, Context context) {
@@ -152,7 +155,7 @@ namespace Jx.net.Transformer
             return returnVal;
         }
 
-        public dynamic Eval(Match m) {
+        private dynamic Eval(Match m) {
             var expression = m.Groups["expression"].Value;
             return formulaSolver.Solve<dynamic>(expression, null);
         }
@@ -178,7 +181,7 @@ namespace Jx.net.Transformer
         private dynamic ProcessPipes(List<string> pipeNames, dynamic val) {
 
             pipeNames.ForEach(pipeName => {
-                if (!this.Mappers.TryGetValue(pipeName, out var pipe)) {
+                if (!this.pipes.TryGetValue(pipeName, out var pipe)) {
                     throw new NullReferenceException($"{pipeName} not a registered {nameof(IValuePipe)}");
                 }
 
@@ -216,7 +219,7 @@ namespace Jx.net.Transformer
             }
 
             if (Check("$", root) || CheckNamed(firstPart)) {
-                jPath = string.Join(".", new[] { "$", rest });
+                jPath = string.IsNullOrEmpty(rest) ? "$" : string.Join(".", new[] { "$", rest });
             } else {
                 jPath = query;
             }

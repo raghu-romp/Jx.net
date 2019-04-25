@@ -6,7 +6,7 @@ namespace Jx.net.ValueMap.BuildIn
 {
     public class BoolYesNo : IValuePipe
     {
-        public string MapperName => nameof(BoolYesNo);
+        public string Name => nameof(BoolYesNo);
 
         public dynamic Process(dynamic fromValue) {
             if (fromValue is null) {
