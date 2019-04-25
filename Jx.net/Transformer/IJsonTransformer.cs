@@ -7,5 +7,6 @@ namespace Jx.net.Transformer
         bool SuppressErrors { get; set; }
 
         JToken Transform(JToken source, JToken transformer);
+        void AddPipe(IValuePipe pipe);
     }
 }
