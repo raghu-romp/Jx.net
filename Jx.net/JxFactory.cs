@@ -8,8 +8,11 @@ namespace Jx.net
 {
     public static class JxFactory
     {
-        public static IJsonTransformer Create() {
-            var jx = new JsonTransformer();
+        public static IJsonTransformer Create(TransformOptions options = null) {
+            if (options == null) {
+                options = new TransformOptions();
+            }
+            var jx = new JsonTransformer(options);
             RegisterBuiltInMappers(jx);
 
             return jx;

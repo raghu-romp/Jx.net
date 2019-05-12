@@ -7,5 +7,6 @@ namespace Jx.net.Transformer
     public class TransformOptions
     {
         public bool NullToNoPath { get; set; } = true;
+        public long MaxIterations { get; set; } = 100;
     }
 }

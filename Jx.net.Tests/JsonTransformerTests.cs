@@ -58,7 +58,7 @@ namespace Jx.net.Tests
                 { "CAD", "C$" }, { "GBP", "£" }
             };
 
-            var pipe = new DictionaryMapper("CcySymbol", map);
+            var pipe = new DictionaryMapPipe("CcySymbol", map);
             TestUseCase("value-map-dict", pipe);
         }
 

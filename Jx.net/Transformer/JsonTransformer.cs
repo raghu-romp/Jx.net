@@ -11,15 +11,18 @@ namespace Jx.net.Transformer
 {
     public class JsonTransformer : IJsonTransformer
     {
-        public bool SuppressErrors { get; set; } = false;
         internal Dictionary<string, IValuePipe> pipes = new Dictionary<string, IValuePipe>();
-        public int MaxIterations = 100;
+        public TransformOptions Options { get; set; }
 
         private Context root;
         private Context currentCtx;
         private readonly Dictionary<string, Context> namedContext = new Dictionary<string, Context>();
 
         private readonly IFormulaSolver formulaSolver = new FormulaSolver();
+
+        internal JsonTransformer(TransformOptions options) {
+            this.Options = options;
+        }
 
         public JToken Transform(JToken source, JToken transformer) {
             root = new Context { Node = source };
@@ -35,11 +38,33 @@ namespace Jx.net.Transformer
             var output = transformer.DeepClone();
             currentCtx = context;
 
-            ProcessForEachTemplates(output);
-            ProcessIfTemplates(output);
+            ProcessBlockStatements(output);
+
             output = ResolveInterpolations(output);
 
             return output;
+        }
+
+        private void ProcessBlockStatements(JToken output) {
+            var iterations = 0;
+            JArray blockStatement;
+            do {
+                blockStatement = output.FindBlockStatement(out var match);
+                if (blockStatement != null) {
+                    RenderBlockTemplate(blockStatement, match);
+                }
+            } while (blockStatement != null && iterations++ < Options.MaxIterations);
+        }
+
+        private void RenderBlockTemplate(JArray blockStatement, Match match) {
+            var blockType = match.Groups["blocktype"].Value;
+            if (blockType == "if" && Patterns.JxIf.IsMatch(match.Value, out var ifMatch)) {
+                RenderIfTemplate(blockStatement, blockStatement.Parent, ifMatch);
+            } else if (blockType == "for" && Patterns.JxFor.IsMatch(match.Value, out var forMatch)) {
+                RenderForTemplate(blockStatement, forMatch);
+            } else {
+                throw new InvalidOperationException($"Unable to process the statement {match.Value}");
+            }
         }
 
         private JToken ResolveInterpolations(JToken output) {
@@ -53,30 +78,6 @@ namespace Jx.net.Transformer
                 }
             });
             return output;
-        }
-
-        private void ProcessIfTemplates(JToken output) {
-            var iterations = 0;
-            JArray ifTemplate;
-            do {
-                ifTemplate = output.FindIfTemplate(out var match);
-
-                if (ifTemplate != null) {
-                    RenderIfTemplate(ifTemplate, ifTemplate.Parent, match);
-                }
-            } while (ifTemplate != null && iterations++ < MaxIterations);
-        }
-
-        private void ProcessForEachTemplates(JToken output) {
-            var iterations = 0;
-            JArray forEachArray;
-            do {
-                forEachArray = output.FindForTemplate(out var match);
-
-                if (forEachArray != null) {
-                    RenderForTemplate(forEachArray, match);
-                }
-            } while (forEachArray != null && iterations++ < MaxIterations);
         }
 
         private void RenderIfTemplate(JArray ifTemplate, JToken parent, Match match) {
@@ -103,7 +104,7 @@ namespace Jx.net.Transformer
             var query = match.Groups["query"].Value;
             var alias = match.Groups["alias"].Value;
             var context = FindContext(query, out var jPath);
-            var tokens = context.Node.SelectTokens(jPath, !SuppressErrors);
+            var tokens = context.Node.SelectTokens(jPath, false);
 
             if (tokens == null) {
                 return;
@@ -161,21 +162,27 @@ namespace Jx.net.Transformer
         }
 
         private dynamic Interpolate(Match match) {
-            var query = match.Groups["query"].Value;
-            var pipes = GetPipes(match);
-            var ctx = FindContext(query, out var jPath);
+            try {
+                var query = match.Groups["query"].Value;
+                var pipes = GetPipes(match);
+                var ctx = FindContext(query, out var jPath);
+                var hasMatchToken = ctx.Node.TrySelectToken(jPath, out var matchToken);
 
-            if (ctx == null || !ctx.Node.TrySelectToken(jPath, out var matchToken)) {
-                return $"[{query}]";
+                if (pipes.Count == 0 && (ctx == null || !hasMatchToken) && !Options.NullToNoPath) {
+                    throw new Exception($"Match token not found for expression '{query}'");
+                }
+
+                var val = matchToken?.Value<dynamic>();
+                if (val is JValue) {
+                    val = ((JValue)val).Value;
+                }
+                val = ProcessPipes(pipes, val);
+
+                return val;
             }
-
-            var val = matchToken.Value<dynamic>();
-            if (val is JValue) {
-                val = ((JValue)val).Value;
+            catch (Exception ex) {
+                throw new Exception($"Unable to interpolate expression {match.Value}", ex);
             }
-            val = ProcessPipes(pipes, val);
-
-            return val;
         }
 
         private dynamic ProcessPipes(List<string> pipeNames, dynamic val) {

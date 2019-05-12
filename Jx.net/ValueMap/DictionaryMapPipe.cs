@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace Jx.net.ValueMap
 {
-    public class DictionaryMapper : IValuePipe
+    public class DictionaryMapPipe : IValuePipe
     {
         public string Name { get; }
         public IDictionary<dynamic, dynamic> Mapping { get; private set; }
         public dynamic Default { get; set; }
 
-        public DictionaryMapper(string name, IDictionary<dynamic, dynamic> mapping)
+        public DictionaryMapPipe(string name, IDictionary<dynamic, dynamic> mapping)
         {
             this.Name = name;
             this.Mapping = mapping;

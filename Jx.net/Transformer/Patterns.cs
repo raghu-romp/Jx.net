@@ -14,6 +14,10 @@ namespace Jx.net.Transformer
             @"=\[(?<expression>.*?)\]"
         );
 
+        public static readonly Regex JxBlockStatement = new Regex(
+            @"^\*jx-(?<blocktype>for|if)(.*?)$"
+        );
+
         public static readonly Regex JxFor = new Regex(
             @"^\*jx-for\((?<query>.*?)\) as (?<alias>[a-z][a-z0-9]{0,9})$"
         );
@@ -23,6 +27,11 @@ namespace Jx.net.Transformer
         public static bool HasMultipleMatches(Regex pattern, string str, out MatchCollection match) {
             match = pattern.Matches(str);
             return match.Count > 0;
+        }
+
+        public static bool IsMatch(this Regex pattern, string str, out Match match) {
+            match = pattern.Match(str);
+            return match.Success;
         }
     }
 }

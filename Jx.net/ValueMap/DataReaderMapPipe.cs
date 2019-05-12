@@ -7,7 +7,7 @@ namespace Jx.net.ValueMap
     public class DataReaderValueMap : IValuePipe
     {
         public string Name { get; }
-        private DictionaryMapper dictionaryMapper;
+        private DictionaryMapPipe dictionaryPipe;
 
         public DataReaderValueMap(string name, IDataReader reader, string fromColumn, string toColumn)
         {
@@ -30,12 +30,12 @@ namespace Jx.net.ValueMap
                 valueMapping.Add(fromValue, toValue);
             }
 
-            this.dictionaryMapper = new DictionaryMapper(this.Name, valueMapping);
+            this.dictionaryPipe = new DictionaryMapPipe(this.Name, valueMapping);
         }
 
         public dynamic Process(dynamic fromValue)
         {
-            return this.dictionaryMapper.Process(fromValue);
+            return this.dictionaryPipe.Process(fromValue);
         }
     }
 }
