@@ -74,7 +74,9 @@ namespace Jx.net.Transformer
                     if (parent.Type == JTokenType.Property)
                         ((JProperty)parent).Value = resolvedValue;
                 } else {
-                    output = JToken.FromObject(resolvedValue);
+                    output = resolvedValue == null 
+                            ? null 
+                            : JToken.FromObject(resolvedValue);
                 }
             });
             return output;

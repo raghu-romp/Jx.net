@@ -10,13 +10,11 @@
     <RepositoryUrl>https://github.com/raghu-romp/Jx.net</RepositoryUrl>
     <PackageTags>JSON transform structure Newtonsoft json-to-json reshape change</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
-    <FileVersion>1.1.0.0</FileVersion>
-    <Version>1.1.0</Version>
-    <PackageReleaseNotes>Features Added:
-1. Natural sequence of block statement execution preseved (earlier, JxFor's are processed and then JxIf)
-2. Breaking: DictionaryMapper renamed as DictionaryMapPipe for consistent naming
-3. Battle-ground tested and minor changes made to accomodate production expectations
+    <AssemblyVersion>1.1.1.0</AssemblyVersion>
+    <FileVersion>1.1.1.0</FileVersion>
+    <Version>1.1.1</Version>
+    <PackageReleaseNotes>
+      Issue #6: Bug fix related to null value handling
     </PackageReleaseNotes>
   </PropertyGroup>
 
