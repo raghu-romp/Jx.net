@@ -1,5 +1,7 @@
 [![Build Status](https://raghu-romp.visualstudio.com/LeisureProjects/_apis/build/status/Jx.net%20build?branchName=master)](https://raghu-romp.visualstudio.com/LeisureProjects/_build/latest?definitionId=3&branchName=master)
 
+[![NuGet](https://img.shields.io/nuget/v/jx.net.svg?style=flat-square)](https://nuget.org/packages/Jx.net/)
+
 
 # Jx.net
 A simple, yet powerful json structure transformation library. Jx.net uses json based templates and commands that are easy to understand.
