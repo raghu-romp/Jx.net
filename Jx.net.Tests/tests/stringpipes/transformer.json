@@ -1,0 +1,5 @@
+{
+    "FullName": "{{$.firstName}} {{$.lastName => ToUpper}}",
+    "IsAlive": "{{$.isAlive => ToString => ToUpper}}",
+    "Spouse": "{{$.spouse => ToString}}"
+}

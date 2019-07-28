@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Jx.net.ValueMap.BuildIn
+namespace Jx.net.ValueMap.BuiltIn
 {
     public class ToUpper : IValuePipe
     {
@@ -10,7 +10,7 @@ namespace Jx.net.ValueMap.BuildIn
 
         public dynamic Process(dynamic fromValue) {
 
-            if (!fromValue is string) {
+            if (!(fromValue is string)) {
                 throw new ArgumentException($"{nameof(fromValue)} should be a string value");
             }
 

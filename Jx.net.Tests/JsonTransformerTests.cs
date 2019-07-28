@@ -63,6 +63,11 @@ namespace Jx.net.Tests
         }
 
         [TestMethod]
+        public void Pipe_StringPipes() {
+            TestUseCase("stringpipes");
+        }
+
+        [TestMethod]
         public void FormulaEvaluation() {
             TestUseCase("formula-eval");
         }

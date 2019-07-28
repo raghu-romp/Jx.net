@@ -12,10 +12,8 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyVersion>1.1.1.0</AssemblyVersion>
     <FileVersion>1.1.1.0</FileVersion>
-    <Version>1.1.1</Version>
-    <PackageReleaseNotes>
-      Issue #6: Bug fix related to null value handling
-    </PackageReleaseNotes>
+    <Version>1.1.2</Version>
+    <PackageReleaseNotes>Added additional built-in pipes (ToString, ToUpper, and ToLower)</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
