@@ -22,7 +22,7 @@ namespace Jx.net.Transformer
             @"^\*jx-for\((?<query>.*?)\) as (?<alias>[a-z][a-z0-9]{0,9})$"
         );
 
-        public static readonly Regex JxIf = new Regex(@"^\*jx-if\((?<query>.*?) (?<condition>(not-)?exists)\)$");
+        public static readonly Regex JxIf = new Regex(@"^\*jx-if\((?<query>.*?) (?<condition>((not-)?exists)|(not-)null)\)$");
 
         public static bool HasMultipleMatches(Regex pattern, string str, out MatchCollection match) {
             match = pattern.Matches(str);

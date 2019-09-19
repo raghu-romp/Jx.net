@@ -47,6 +47,11 @@ namespace Jx.net.Tests
         }
 
         [TestMethod]
+        public void JxIfHasValue() {
+            TestUseCase("jx-if-not-null");
+        }
+
+        [TestMethod]
         public void Pipe_BoolYesNo() {
             TestUseCase("value-map");
         }

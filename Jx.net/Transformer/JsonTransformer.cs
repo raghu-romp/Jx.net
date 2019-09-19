@@ -86,9 +86,13 @@ namespace Jx.net.Transformer
             var query = match.Groups["query"].Value;
             var condition = match.Groups["condition"].Value;
             var context = FindContext(query, out var jPath);
-            var queryTokens = context.Node.SelectTokens(jPath);
-            var exists = queryTokens.Any();
-            var truthy = (exists && condition == "exists") || (!exists && condition == "not-exists");
+            var token = context.Node.SelectToken(jPath);
+            var exists = token != null;
+            var truthy = condition.Contains("null")
+                    ? exists && ((condition == "not-null" && (token.Type != JTokenType.Null)) 
+                                || ((condition == "null" && token.Type == JTokenType.Null)))
+                    : (exists && condition == "exists") || (!exists && condition == "not-exists");
+
             var template = truthy ? ifTemplate[1]
                 : ifTemplate.Count > 2 ? ifTemplate[2]
                 : null;
