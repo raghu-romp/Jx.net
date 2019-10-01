@@ -20,7 +20,8 @@
     },
     {
       "type": "mobile",
-      "number": "123 456-7890"
+      "number": "123 456-7890",
+      "isActive": "TRUE"
     }
   ],
   "children": [],
