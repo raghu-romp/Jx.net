@@ -24,6 +24,7 @@ namespace Jx.net
             jx.pipes.Add(nameof(ValueMap.BuiltIn.ToUpper), new ToUpper());
             jx.pipes.Add(nameof(ValueMap.BuiltIn.ToLower), new ToLower());
             jx.pipes.Add(nameof(ToBool), new ToBool());
+            jx.pipes.Add(nameof(ToInt), new ToInt());
         }
     }
 }

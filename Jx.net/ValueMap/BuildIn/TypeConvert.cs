@@ -26,4 +26,13 @@ namespace Jx.net.ValueMap.BuiltIn
             return string.Equals(fromValue, "true", StringComparison.InvariantCultureIgnoreCase);
         }
     }
+
+    public class ToInt : IValuePipe
+    {
+        public string Name => nameof(ToInt);
+
+        public dynamic Process(dynamic fromValue) {
+            return Convert.ToInt32(fromValue);
+        }
+    }
 }
