@@ -1,11 +1,8 @@
 {
   "FullName": "John Smith",
   "IsAlive": "Yes",
-  "Age": 45,
   "primaryContact": {
     "type": "mobile",
-    "number": "123 456-7890",
-    "isActive": "TRUE"
-  },
-  "primaryContactActive": true
+    "number": "123 456-7890"
+  }
 }

@@ -1,83 +1,49 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Jx.net.ValueMap;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
-using Jx.net.Extensions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Jx.net.Transformer;
-using Jx.net.ValueMap;
+using Xunit;
 
-namespace Jx.net.Tests
+namespace Jx.net.test
 {
-    [TestClass]
     public class JsonTransformerTests
     {
         string testsRootPath;
 
-        [TestInitialize]
-        public void Setup()
+        public JsonTransformerTests()
         {
             testsRootPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "tests");
         }
 
-        [TestMethod]
-        public void BasicJPath()
+        [Theory]
+        [InlineData("basic")]
+        [InlineData("formula-eval")]
+        [InlineData("jx-for")]
+        [InlineData("jx-if-exists")]
+        [InlineData("multiple-jx-for")]
+        [InlineData("value-map")]
+        public void TestTransformer(string name)
         {
-            TestUseCase("basic");
+            ExecuteTest(name);
         }
 
-        [TestMethod]
-        public void JxFor()
+        [Fact]
+        public void Pipe_DictTest()
         {
-            TestUseCase("jx-for");
-        }
-
-        [TestMethod]
-        public void NestedJxFor()
-        {
-            TestUseCase("multiple-jx-for");
-        }
-
-        [TestMethod]
-        public void JxIf() {
-            TestUseCase("jx-if-exists");
-        }
-
-        [TestMethod]
-        public void JxIfHasValue() {
-            TestUseCase("jx-if-not-null");
-        }
-
-        [TestMethod]
-        public void Pipe_BoolYesNo() {
-            TestUseCase("value-map");
-        }
-
-        [TestMethod]
-        public void Pipe_DictTest() {
             var map = new Dictionary<dynamic, dynamic> {
                 { "USD", "$" }, { "AUD", "A$" },
-                { "CAD", "C$" }, { "GBP", "£" }
+                { "CAD", "C$" }, { "GBP", "�" }
             };
 
             var pipe = new DictionaryMapPipe("CcySymbol", map);
-            TestUseCase("value-map-dict", pipe);
+            ExecuteTest("value-map-dict", pipe);
         }
 
-        [TestMethod]
-        public void Pipe_StringPipes() {
-            TestUseCase("stringpipes");
-        }
-
-        [TestMethod]
-        public void FormulaEvaluation() {
-            TestUseCase("formula-eval");
-        }
-
-        private void TestUseCase(string name, IValuePipe pipe = null)
+        private void ExecuteTest(string name, IValuePipe pipe = null)
         {
             var testPath = Path.Combine(testsRootPath, name);
             var source = ReadFile(Path.Combine(testPath, "source.json"));
@@ -85,13 +51,15 @@ namespace Jx.net.Tests
             var expected = ReadFile(Path.Combine(testPath, "expected.json"));
 
             var jx = JxFactory.Create();
-            if (pipe != null) {
+
+            if (pipe != null)
+            {
                 jx.AddPipe(pipe);
             }
 
             var actual = jx.Transform(source, transformer);
 
-            Assert.IsTrue(JToken.DeepEquals(expected, actual), $"Expected: {expected}\nActual: {actual}");
+            Assert.True(JToken.DeepEquals(expected, actual), $"Expected: {expected}\nActual: {actual}");
         }
 
         private JToken ReadFile(string fileName)

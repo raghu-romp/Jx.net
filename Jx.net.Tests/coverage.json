@@ -1544,14 +1544,14 @@
       "Jx.net.Formulas.FormulaSolver": {
         "T Jx.net.Formulas.FormulaSolver::Solve(System.String,System.Collections.Generic.Dictionary`2<System.String,System.Object>)": {
           "Lines": {
-            "12": 2,
-            "13": 2,
-            "14": 0,
-            "15": 0,
-            "16": 0,
-            "18": 2,
-            "19": 2,
-            "20": 2
+            "12": 9,
+            "13": 9,
+            "14": 10,
+            "15": 3,
+            "16": 1,
+            "18": 9,
+            "19": 9,
+            "20": 9
           },
           "Branches": [
             {
@@ -1560,7 +1560,7 @@
               "EndOffset": 26,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 0
+              "Hits": 1
             },
             {
               "Line": 14,
@@ -1568,17 +1568,17 @@
               "EndOffset": 47,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 2
+              "Hits": 9
             }
           ]
         },
         "Flee.PublicTypes.ExpressionContext Jx.net.Formulas.FormulaSolver::CreateExpressionContext()": {
           "Lines": {
-            "22": 2,
-            "23": 2,
-            "24": 2,
-            "28": 2,
-            "29": 2
+            "22": 9,
+            "23": 9,
+            "24": 9,
+            "28": 9,
+            "29": 9
           },
           "Branches": []
         }
@@ -1588,9 +1588,9 @@
       "Jx.net.Extensions.IEnumerableExtensions": {
         "System.Void Jx.net.Extensions.IEnumerableExtensions::Each(System.Collections.Generic.IEnumerable`1<T>,System.Action`1<T>)": {
           "Lines": {
-            "11": 38,
-            "12": 444,
-            "13": 38
+            "11": 39,
+            "12": 453,
+            "13": 39
           },
           "Branches": [
             {
@@ -1599,7 +1599,7 @@
               "EndOffset": 11,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 110
+              "Hits": 112
             },
             {
               "Line": 12,
@@ -1607,7 +1607,7 @@
               "EndOffset": 34,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 38
+              "Hits": 39
             }
           ]
         }

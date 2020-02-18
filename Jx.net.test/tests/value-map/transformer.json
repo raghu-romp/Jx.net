@@ -1,6 +1,0 @@
-{
-  "FullName": "{{$.firstName}} {{$.lastName}}",
-  "IsAlive": "{{$.isAlive => BoolYesNo}}", // example of pipe-transform
-  "primaryContact": "{{$.phoneNumbers[?(@.type == 'mobile')]}}"
-  // example of json branch copy
-}

@@ -1,8 +1,0 @@
-{
-  "firstName": "John",
-  "lastName": "Smith",
-  "isAlive": true,
-  "age": 27,
-  "children": [],
-  "spouse": null
-}

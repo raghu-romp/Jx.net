@@ -1,8 +1,0 @@
-{
-  "FullName": "John Smith",
-  "IsAlive": "Yes",
-  "primaryContact": {
-    "type": "mobile",
-    "number": "123 456-7890"
-  }
-}
