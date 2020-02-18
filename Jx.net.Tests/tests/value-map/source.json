@@ -2,7 +2,7 @@
   "firstName": "John",
   "lastName": "Smith",
   "isAlive": true,
-  "age": 27,
+  "age": "45",
   "address": {
     "streetAddress": "21 2nd Street",
     "city": "New York",
@@ -20,7 +20,8 @@
     },
     {
       "type": "mobile",
-      "number": "123 456-7890"
+      "number": "123 456-7890",
+      "isActive": "TRUE"
     }
   ],
   "children": [],

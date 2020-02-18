@@ -1,4 +1,4 @@
-[![Build Status](https://raghu-romp.visualstudio.com/LeisureProjects/_apis/build/status/Jx.net%20build?branchName=master)](https://raghu-romp.visualstudio.com/LeisureProjects/_build/latest?definitionId=3&branchName=master)
+[![Build Status](https://raghu-romp.visualstudio.com/LeisureProjects/_apis/build/status/Jx.net%20build?branchName=master)](https://raghu-romp.visualstudio.com/LeisureProjects/_build/latest?definitionId=3&branchName=master)  [![NuGet](https://img.shields.io/nuget/v/jx.net.svg?style=flat-square)](https://nuget.org/packages/Jx.net/)
 
 
 # Jx.net

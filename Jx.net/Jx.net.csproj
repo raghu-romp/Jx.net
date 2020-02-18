@@ -10,12 +10,10 @@
     <RepositoryUrl>https://github.com/raghu-romp/Jx.net</RepositoryUrl>
     <PackageTags>JSON transform structure Newtonsoft json-to-json reshape change</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>1.1.1.0</AssemblyVersion>
-    <FileVersion>1.1.1.0</FileVersion>
-    <Version>1.1.1</Version>
-    <PackageReleaseNotes>
-      Issue #6: Bug fix related to null value handling
-    </PackageReleaseNotes>
+    <AssemblyVersion>1.1.4.0</AssemblyVersion>
+    <FileVersion>1.1.4.0</FileVersion>
+    <Version>1.1.4</Version>
+    <PackageReleaseNotes>Built-in pipe =&gt; ToBool added</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
