@@ -61,14 +61,6 @@ namespace Jx.net.Extensions
             return token.FindBlockTemplate(Patterns.JxBlockStatement, out match);
         }
 
-        //internal static JArray FindForTemplate(this JToken token, out Match match) {
-        //    return token.FindBlockTemplate(Patterns.JxFor, out match);
-        //}
-
-        //internal static JArray FindIfTemplate(this JToken token, out Match match) {
-        //    return token.FindBlockTemplate(Patterns.JxIf, out match);
-        //}
-
         internal static JArray FindBlockTemplate(this JToken token, Regex pattern, out Match match)
         {
             if (token.Type == JTokenType.Object) {

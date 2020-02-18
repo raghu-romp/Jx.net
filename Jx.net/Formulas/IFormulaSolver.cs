@@ -6,6 +6,6 @@ namespace Jx.net.Formulas
 {
     public interface IFormulaSolver
     {
-        T Solve<T>(string expression, Dictionary<string, dynamic> variables);
+        T Solve<T>(string expression, Dictionary<string, dynamic> variables = null);
     }
 }

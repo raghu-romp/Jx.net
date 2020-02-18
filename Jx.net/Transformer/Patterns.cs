@@ -24,11 +24,6 @@ namespace Jx.net.Transformer
 
         public static readonly Regex JxIf = new Regex(@"^\*jx-if\((?<query>.*?) (?<condition>(not-)?exists)\)$");
 
-        public static bool HasMultipleMatches(Regex pattern, string str, out MatchCollection match) {
-            match = pattern.Matches(str);
-            return match.Count > 0;
-        }
-
         public static bool IsMatch(this Regex pattern, string str, out Match match) {
             match = pattern.Match(str);
             return match.Success;

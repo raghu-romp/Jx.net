@@ -1,0 +1,7 @@
+[
+  "*jx-for($.Currencies) as ccy",
+  {
+    "Code": "{{ccy}}",
+    "Symbol": "{{ccy => CcySymbol}}"
+  }
+]

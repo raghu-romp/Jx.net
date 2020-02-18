@@ -1,0 +1,2076 @@
+{
+  "Jx.net.dll": {
+    "C:\\Work\\Repos\\raghu-repo\\Jx.net\\Jx.net\\JxFactory.cs": {
+      "Jx.net.JxFactory": {
+        "Jx.net.Transformer.IJsonTransformer Jx.net.JxFactory::Create(Jx.net.Transformer.TransformOptions)": {
+          "Lines": {
+            "11": 7,
+            "12": 14,
+            "13": 7,
+            "14": 7,
+            "15": 7,
+            "16": 7,
+            "18": 7,
+            "19": 7
+          },
+          "Branches": [
+            {
+              "Line": 12,
+              "Offset": 7,
+              "EndOffset": 9,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 7
+            },
+            {
+              "Line": 12,
+              "Offset": 7,
+              "EndOffset": 18,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 7
+            }
+          ]
+        },
+        "System.Void Jx.net.JxFactory::RegisterBuiltInMappers(Jx.net.Transformer.JsonTransformer)": {
+          "Lines": {
+            "21": 7,
+            "22": 7,
+            "23": 7
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Work\\Repos\\raghu-repo\\Jx.net\\Jx.net\\ValueMap\\DataReaderMapPipe.cs": {
+      "Jx.net.ValueMap.DataReaderValueMap": {
+        "System.String Jx.net.ValueMap.DataReaderValueMap::get_Name()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.Void Jx.net.ValueMap.DataReaderValueMap::BuildMap(System.Data.IDataReader,System.String,System.String)": {
+          "Lines": {
+            "19": 0,
+            "20": 0,
+            "22": 0,
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0,
+            "28": 0,
+            "30": 0,
+            "31": 0,
+            "33": 0,
+            "34": 0
+          },
+          "Branches": [
+            {
+              "Line": 22,
+              "Offset": 85,
+              "EndOffset": 9,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 26,
+              "Offset": 40,
+              "EndOffset": 42,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 26,
+              "Offset": 40,
+              "EndOffset": 65,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 22,
+              "Offset": 85,
+              "EndOffset": 87,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Object Jx.net.ValueMap.DataReaderValueMap::Process(System.Object)": {
+          "Lines": {
+            "37": 0,
+            "38": 0,
+            "39": 0
+          },
+          "Branches": [
+            {
+              "Line": 38,
+              "Offset": 6,
+              "EndOffset": 10,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 38,
+              "Offset": 6,
+              "EndOffset": 68,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void Jx.net.ValueMap.DataReaderValueMap::.ctor(System.String,System.Data.IDataReader,System.String,System.String)": {
+          "Lines": {
+            "12": 0,
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Work\\Repos\\raghu-repo\\Jx.net\\Jx.net\\ValueMap\\DictionaryMapPipe.cs": {
+      "Jx.net.ValueMap.DictionaryMapPipe": {
+        "System.String Jx.net.ValueMap.DictionaryMapPipe::get_Name()": {
+          "Lines": {
+            "8": 1
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.IDictionary`2<System.Object,System.Object> Jx.net.ValueMap.DictionaryMapPipe::get_Mapping()": {
+          "Lines": {
+            "9": 5
+          },
+          "Branches": []
+        },
+        "System.Object Jx.net.ValueMap.DictionaryMapPipe::get_Default()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "System.Object Jx.net.ValueMap.DictionaryMapPipe::Process(System.Object)": {
+          "Lines": {
+            "19": 4,
+            "20": 0,
+            "21": 0,
+            "24": 4,
+            "25": 4,
+            "26": 4
+          },
+          "Branches": [
+            {
+              "Line": 20,
+              "Offset": 6,
+              "EndOffset": 10,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 20,
+              "Offset": 6,
+              "EndOffset": 54,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 4
+            },
+            {
+              "Line": 20,
+              "Offset": 74,
+              "EndOffset": 78,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            },
+            {
+              "Line": 20,
+              "Offset": 74,
+              "EndOffset": 132,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 4
+            },
+            {
+              "Line": 20,
+              "Offset": 161,
+              "EndOffset": 163,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 20,
+              "Offset": 161,
+              "EndOffset": 168,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 4
+            },
+            {
+              "Line": 24,
+              "Offset": 173,
+              "EndOffset": 177,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 1
+            },
+            {
+              "Line": 24,
+              "Offset": 173,
+              "EndOffset": 250,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 4
+            }
+          ]
+        },
+        "System.Void Jx.net.ValueMap.DictionaryMapPipe::.ctor(System.String,System.Collections.Generic.IDictionary`2<System.Object,System.Object>)": {
+          "Lines": {
+            "12": 1,
+            "13": 1,
+            "14": 1,
+            "15": 1,
+            "16": 1
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Work\\Repos\\raghu-repo\\Jx.net\\Jx.net\\ValueMap\\LambdaPipe.cs": {
+      "Jx.net.ValueMap.LambdaPipe": {
+        "System.String Jx.net.ValueMap.LambdaPipe::get_Name()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "Jx.net.ValueMap.LambdaValuePipeFunc Jx.net.ValueMap.LambdaPipe::get_MapFunction()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "System.Object Jx.net.ValueMap.LambdaPipe::Process(System.Object)": {
+          "Lines": {
+            "21": 0,
+            "22": 0,
+            "23": 0
+          },
+          "Branches": [
+            {
+              "Line": 22,
+              "Offset": 6,
+              "EndOffset": 10,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 22,
+              "Offset": 6,
+              "EndOffset": 62,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void Jx.net.ValueMap.LambdaPipe::.ctor(System.String,Jx.net.ValueMap.LambdaValuePipeFunc)": {
+          "Lines": {
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0,
+            "18": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Work\\Repos\\raghu-repo\\Jx.net\\Jx.net\\ValueMap\\BuildIn\\BoolYesNo.cs": {
+      "Jx.net.ValueMap.BuildIn.BoolYesNo": {
+        "System.String Jx.net.ValueMap.BuildIn.BoolYesNo::get_Name()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.Object Jx.net.ValueMap.BuildIn.BoolYesNo::Process(System.Object)": {
+          "Lines": {
+            "11": 1,
+            "12": 0,
+            "13": 0,
+            "16": 2,
+            "17": 1,
+            "18": 1,
+            "21": 0,
+            "22": 1
+          },
+          "Branches": [
+            {
+              "Line": 12,
+              "Offset": 7,
+              "EndOffset": 9,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 12,
+              "Offset": 7,
+              "EndOffset": 14,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 16,
+              "Offset": 25,
+              "EndOffset": 27,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 1
+            },
+            {
+              "Line": 17,
+              "Offset": 33,
+              "EndOffset": 37,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 1
+            },
+            {
+              "Line": 17,
+              "Offset": 33,
+              "EndOffset": 74,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 1
+            },
+            {
+              "Line": 17,
+              "Offset": 95,
+              "EndOffset": 97,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 0
+            },
+            {
+              "Line": 17,
+              "Offset": 95,
+              "EndOffset": 104,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 1
+            },
+            {
+              "Line": 16,
+              "Offset": 25,
+              "EndOffset": 112,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Work\\Repos\\raghu-repo\\Jx.net\\Jx.net\\Transformer\\Context.cs": {
+      "Jx.net.Transformer.Context": {
+        "Newtonsoft.Json.Linq.JToken Jx.net.Transformer.Context::get_Node()": {
+          "Lines": {
+            "10": 117
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Int32> Jx.net.Transformer.Context::get_Index()": {
+          "Lines": {
+            "11": 0
+          },
+          "Branches": []
+        },
+        "Jx.net.Transformer.Context Jx.net.Transformer.Context::get_Parent()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean Jx.net.Transformer.Context::isLast()": {
+          "Lines": {
+            "15": 0,
+            "16": 0,
+            "17": 0
+          },
+          "Branches": []
+        },
+        "Jx.net.Transformer.Context Jx.net.Transformer.Context::New(Newtonsoft.Json.Linq.JToken,Jx.net.Transformer.Context,System.Nullable`1<System.Int32>)": {
+          "Lines": {
+            "19": 14,
+            "20": 14,
+            "21": 14
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Work\\Repos\\raghu-repo\\Jx.net\\Jx.net\\Transformer\\JsonTransformer.cs": {
+      "Jx.net.Transformer.JsonTransformer": {
+        "Jx.net.Transformer.TransformOptions Jx.net.Transformer.JsonTransformer::get_Options()": {
+          "Lines": {
+            "15": 17
+          },
+          "Branches": []
+        },
+        "Newtonsoft.Json.Linq.JToken Jx.net.Transformer.JsonTransformer::Transform(Newtonsoft.Json.Linq.JToken,Newtonsoft.Json.Linq.JToken)": {
+          "Lines": {
+            "27": 7,
+            "28": 7,
+            "29": 7,
+            "30": 7,
+            "31": 7
+          },
+          "Branches": []
+        },
+        "System.Void Jx.net.Transformer.JsonTransformer::AddPipe(Jx.net.IValuePipe)": {
+          "Lines": {
+            "33": 1,
+            "34": 1,
+            "35": 1
+          },
+          "Branches": []
+        },
+        "Newtonsoft.Json.Linq.JToken Jx.net.Transformer.JsonTransformer::RenderNode(Newtonsoft.Json.Linq.JToken,Jx.net.Transformer.Context)": {
+          "Lines": {
+            "37": 24,
+            "38": 24,
+            "39": 24,
+            "41": 24,
+            "43": 24,
+            "45": 24,
+            "46": 24
+          },
+          "Branches": []
+        },
+        "System.Void Jx.net.Transformer.JsonTransformer::ProcessBlockStatements(Newtonsoft.Json.Linq.JToken)": {
+          "Lines": {
+            "48": 24,
+            "49": 24,
+            "51": 34,
+            "52": 34,
+            "53": 44,
+            "54": 10,
+            "55": 10,
+            "56": 68,
+            "57": 24
+          },
+          "Branches": [
+            {
+              "Line": 56,
+              "Offset": 62,
+              "EndOffset": 3,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 34
+            },
+            {
+              "Line": 53,
+              "Offset": 19,
+              "EndOffset": 21,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 10
+            },
+            {
+              "Line": 53,
+              "Offset": 19,
+              "EndOffset": 32,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 34
+            },
+            {
+              "Line": 56,
+              "Offset": 34,
+              "EndOffset": 36,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 10
+            },
+            {
+              "Line": 56,
+              "Offset": 34,
+              "EndOffset": 57,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 24
+            },
+            {
+              "Line": 56,
+              "Offset": 62,
+              "EndOffset": 64,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 24
+            }
+          ]
+        },
+        "System.Void Jx.net.Transformer.JsonTransformer::RenderBlockTemplate(Newtonsoft.Json.Linq.JArray,System.Text.RegularExpressions.Match)": {
+          "Lines": {
+            "59": 10,
+            "60": 10,
+            "61": 14,
+            "62": 4,
+            "63": 16,
+            "64": 6,
+            "65": 0,
+            "66": 0,
+            "68": 10
+          },
+          "Branches": [
+            {
+              "Line": 61,
+              "Offset": 34,
+              "EndOffset": 36,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 4
+            },
+            {
+              "Line": 61,
+              "Offset": 34,
+              "EndOffset": 56,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 6
+            },
+            {
+              "Line": 61,
+              "Offset": 59,
+              "EndOffset": 61,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 4
+            },
+            {
+              "Line": 61,
+              "Offset": 59,
+              "EndOffset": 80,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 6
+            },
+            {
+              "Line": 63,
+              "Offset": 91,
+              "EndOffset": 93,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 6
+            },
+            {
+              "Line": 63,
+              "Offset": 91,
+              "EndOffset": 113,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 0
+            },
+            {
+              "Line": 63,
+              "Offset": 118,
+              "EndOffset": 120,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 6
+            },
+            {
+              "Line": 63,
+              "Offset": 118,
+              "EndOffset": 133,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 0
+            }
+          ]
+        },
+        "Newtonsoft.Json.Linq.JToken Jx.net.Transformer.JsonTransformer::ResolveInterpolations(Newtonsoft.Json.Linq.JToken)": {
+          "Lines": {
+            "70": 24,
+            "71": 120,
+            "72": 120,
+            "73": 212,
+            "74": 116,
+            "75": 112,
+            "76": 120,
+            "77": 28,
+            "78": 28,
+            "79": 28,
+            "80": 28,
+            "81": 120,
+            "82": 24,
+            "83": 24
+          },
+          "Branches": [
+            {
+              "Line": 73,
+              "Offset": 20,
+              "EndOffset": 22,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 92
+            },
+            {
+              "Line": 74,
+              "Offset": 34,
+              "EndOffset": 36,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 88
+            },
+            {
+              "Line": 75,
+              "Offset": 47,
+              "EndOffset": 51,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 1
+            },
+            {
+              "Line": 75,
+              "Offset": 47,
+              "EndOffset": 87,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 88
+            },
+            {
+              "Line": 74,
+              "Offset": 34,
+              "EndOffset": 114,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 92
+            },
+            {
+              "Line": 73,
+              "Offset": 20,
+              "EndOffset": 120,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 4
+            },
+            {
+              "Line": 77,
+              "Offset": 127,
+              "EndOffset": 131,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 1
+            },
+            {
+              "Line": 77,
+              "Offset": 127,
+              "EndOffset": 167,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 4
+            },
+            {
+              "Line": 77,
+              "Offset": 187,
+              "EndOffset": 191,
+              "Path": 1,
+              "Ordinal": 9,
+              "Hits": 1
+            },
+            {
+              "Line": 77,
+              "Offset": 187,
+              "EndOffset": 235,
+              "Path": 0,
+              "Ordinal": 8,
+              "Hits": 4
+            },
+            {
+              "Line": 77,
+              "Offset": 255,
+              "EndOffset": 259,
+              "Path": 1,
+              "Ordinal": 11,
+              "Hits": 1
+            },
+            {
+              "Line": 77,
+              "Offset": 255,
+              "EndOffset": 313,
+              "Path": 0,
+              "Ordinal": 10,
+              "Hits": 4
+            },
+            {
+              "Line": 77,
+              "Offset": 340,
+              "EndOffset": 342,
+              "Path": 0,
+              "Ordinal": 12,
+              "Hits": 4
+            },
+            {
+              "Line": 77,
+              "Offset": 347,
+              "EndOffset": 351,
+              "Path": 1,
+              "Ordinal": 15,
+              "Hits": 1
+            },
+            {
+              "Line": 77,
+              "Offset": 347,
+              "EndOffset": 410,
+              "Path": 0,
+              "Ordinal": 14,
+              "Hits": 4
+            },
+            {
+              "Line": 77,
+              "Offset": 340,
+              "EndOffset": 443,
+              "Path": 1,
+              "Ordinal": 13,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void Jx.net.Transformer.JsonTransformer::RenderIfTemplate(Newtonsoft.Json.Linq.JArray,Newtonsoft.Json.Linq.JToken,System.Text.RegularExpressions.Match)": {
+          "Lines": {
+            "85": 4,
+            "86": 4,
+            "87": 4,
+            "88": 4,
+            "89": 4,
+            "90": 4,
+            "91": 4,
+            "92": 4,
+            "93": 4,
+            "94": 4,
+            "95": 5,
+            "96": 1,
+            "97": 1,
+            "98": 4,
+            "99": 3,
+            "100": 3,
+            "101": 3,
+            "102": 3,
+            "103": 4
+          },
+          "Branches": [
+            {
+              "Line": 91,
+              "Offset": 80,
+              "EndOffset": 82,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 2
+            },
+            {
+              "Line": 91,
+              "Offset": 80,
+              "EndOffset": 95,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 3
+            },
+            {
+              "Line": 91,
+              "Offset": 93,
+              "EndOffset": 95,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 3
+            },
+            {
+              "Line": 91,
+              "Offset": 97,
+              "EndOffset": 99,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 2
+            },
+            {
+              "Line": 91,
+              "Offset": 97,
+              "EndOffset": 112,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 1
+            },
+            {
+              "Line": 91,
+              "Offset": 93,
+              "EndOffset": 115,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            },
+            {
+              "Line": 92,
+              "Offset": 120,
+              "EndOffset": 122,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 2
+            },
+            {
+              "Line": 92,
+              "Offset": 129,
+              "EndOffset": 131,
+              "Path": 0,
+              "Ordinal": 8,
+              "Hits": 1
+            },
+            {
+              "Line": 92,
+              "Offset": 129,
+              "EndOffset": 134,
+              "Path": 1,
+              "Ordinal": 9,
+              "Hits": 1
+            },
+            {
+              "Line": 92,
+              "Offset": 120,
+              "EndOffset": 143,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 2
+            },
+            {
+              "Line": 95,
+              "Offset": 161,
+              "EndOffset": 163,
+              "Path": 0,
+              "Ordinal": 10,
+              "Hits": 1
+            },
+            {
+              "Line": 96,
+              "Offset": 182,
+              "EndOffset": 184,
+              "Path": 0,
+              "Ordinal": 12,
+              "Hits": 1
+            },
+            {
+              "Line": 96,
+              "Offset": 182,
+              "EndOffset": 196,
+              "Path": 1,
+              "Ordinal": 13,
+              "Hits": 1
+            },
+            {
+              "Line": 95,
+              "Offset": 161,
+              "EndOffset": 199,
+              "Path": 1,
+              "Ordinal": 11,
+              "Hits": 3
+            },
+            {
+              "Line": 100,
+              "Offset": 234,
+              "EndOffset": 236,
+              "Path": 0,
+              "Ordinal": 14,
+              "Hits": 3
+            },
+            {
+              "Line": 100,
+              "Offset": 234,
+              "EndOffset": 255,
+              "Path": 1,
+              "Ordinal": 15,
+              "Hits": 3
+            }
+          ]
+        },
+        "System.Void Jx.net.Transformer.JsonTransformer::RenderForTemplate(Newtonsoft.Json.Linq.JArray,System.Text.RegularExpressions.Match)": {
+          "Lines": {
+            "105": 6,
+            "106": 6,
+            "107": 6,
+            "108": 6,
+            "109": 6,
+            "111": 0,
+            "112": 0,
+            "115": 6,
+            "117": 6,
+            "118": 6,
+            "120": 12,
+            "121": 6,
+            "122": 54,
+            "123": 14,
+            "124": 14,
+            "125": 14,
+            "126": 14,
+            "127": 14,
+            "128": 14,
+            "130": 6,
+            "131": 6,
+            "132": 6,
+            "133": 6
+          },
+          "Branches": [
+            {
+              "Line": 111,
+              "Offset": 79,
+              "EndOffset": 81,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 111,
+              "Offset": 79,
+              "EndOffset": 87,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 6
+            },
+            {
+              "Line": 120,
+              "Offset": 121,
+              "EndOffset": 123,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 6
+            },
+            {
+              "Line": 122,
+              "Offset": 225,
+              "EndOffset": 137,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 14
+            },
+            {
+              "Line": 122,
+              "Offset": 225,
+              "EndOffset": 227,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 6
+            },
+            {
+              "Line": 120,
+              "Offset": 121,
+              "EndOffset": 249,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 6
+            }
+          ]
+        },
+        "System.Object Jx.net.Transformer.JsonTransformer::Resolve(System.String)": {
+          "Lines": {
+            "135": 96,
+            "136": 182,
+            "138": 190,
+            "139": 94,
+            "140": 96,
+            "141": 94,
+            "143": 96,
+            "144": 96
+          },
+          "Branches": [
+            {
+              "Line": 138,
+              "Offset": 37,
+              "EndOffset": 39,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 94
+            },
+            {
+              "Line": 139,
+              "Offset": 45,
+              "EndOffset": 49,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            },
+            {
+              "Line": 139,
+              "Offset": 45,
+              "EndOffset": 85,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 94
+            },
+            {
+              "Line": 138,
+              "Offset": 37,
+              "EndOffset": 134,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 96
+            }
+          ]
+        },
+        "System.Object Jx.net.Transformer.JsonTransformer::Resolve(System.String,System.Text.RegularExpressions.Regex,System.Func`2<System.Text.RegularExpressions.Match,System.Object>)": {
+          "Lines": {
+            "146": 190,
+            "147": 190,
+            "148": 190,
+            "149": 209,
+            "150": 19,
+            "151": 190,
+            "152": 240,
+            "153": 240,
+            "154": 240,
+            "155": 240,
+            "156": 171,
+            "158": 190,
+            "159": 190
+          },
+          "Branches": [
+            {
+              "Line": 149,
+              "Offset": 30,
+              "EndOffset": 32,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 51
+            },
+            {
+              "Line": 149,
+              "Offset": 30,
+              "EndOffset": 46,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 139
+            },
+            {
+              "Line": 149,
+              "Offset": 49,
+              "EndOffset": 51,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 19
+            },
+            {
+              "Line": 149,
+              "Offset": 49,
+              "EndOffset": 68,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 171
+            },
+            {
+              "Line": 154,
+              "Offset": 19,
+              "EndOffset": 23,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 154,
+              "Offset": 19,
+              "EndOffset": 59,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 69
+            },
+            {
+              "Line": 154,
+              "Offset": 75,
+              "EndOffset": 77,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 69
+            },
+            {
+              "Line": 154,
+              "Offset": 82,
+              "EndOffset": 86,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 1
+            },
+            {
+              "Line": 154,
+              "Offset": 82,
+              "EndOffset": 134,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 69
+            },
+            {
+              "Line": 154,
+              "Offset": 75,
+              "EndOffset": 157,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Object Jx.net.Transformer.JsonTransformer::Eval(System.Text.RegularExpressions.Match)": {
+          "Lines": {
+            "161": 2,
+            "162": 2,
+            "163": 2,
+            "164": 2
+          },
+          "Branches": []
+        },
+        "System.Object Jx.net.Transformer.JsonTransformer::Interpolate(System.Text.RegularExpressions.Match)": {
+          "Lines": {
+            "166": 86,
+            "167": 86,
+            "168": 86,
+            "169": 86,
+            "170": 86,
+            "171": 86,
+            "173": 0,
+            "174": 0,
+            "177": 86,
+            "178": 171,
+            "179": 85,
+            "180": 85,
+            "181": 86,
+            "183": 86,
+            "185": 0,
+            "186": 0,
+            "188": 86
+          },
+          "Branches": [
+            {
+              "Line": 173,
+              "Offset": 64,
+              "EndOffset": 66,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 81
+            },
+            {
+              "Line": 173,
+              "Offset": 67,
+              "EndOffset": 69,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 81
+            },
+            {
+              "Line": 173,
+              "Offset": 67,
+              "EndOffset": 73,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 173,
+              "Offset": 71,
+              "EndOffset": 73,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 173,
+              "Offset": 64,
+              "EndOffset": 89,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 86
+            },
+            {
+              "Line": 173,
+              "Offset": 71,
+              "EndOffset": 89,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 86
+            },
+            {
+              "Line": 173,
+              "Offset": 94,
+              "EndOffset": 96,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 0
+            },
+            {
+              "Line": 173,
+              "Offset": 94,
+              "EndOffset": 119,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 86
+            },
+            {
+              "Line": 177,
+              "Offset": 125,
+              "EndOffset": 127,
+              "Path": 0,
+              "Ordinal": 8,
+              "Hits": 0
+            },
+            {
+              "Line": 177,
+              "Offset": 125,
+              "EndOffset": 130,
+              "Path": 1,
+              "Ordinal": 9,
+              "Hits": 86
+            },
+            {
+              "Line": 178,
+              "Offset": 153,
+              "EndOffset": 155,
+              "Path": 0,
+              "Ordinal": 10,
+              "Hits": 85
+            },
+            {
+              "Line": 179,
+              "Offset": 161,
+              "EndOffset": 165,
+              "Path": 1,
+              "Ordinal": 13,
+              "Hits": 1
+            },
+            {
+              "Line": 179,
+              "Offset": 161,
+              "EndOffset": 202,
+              "Path": 0,
+              "Ordinal": 12,
+              "Hits": 85
+            },
+            {
+              "Line": 178,
+              "Offset": 153,
+              "EndOffset": 232,
+              "Path": 1,
+              "Ordinal": 11,
+              "Hits": 86
+            },
+            {
+              "Line": 181,
+              "Offset": 237,
+              "EndOffset": 241,
+              "Path": 1,
+              "Ordinal": 15,
+              "Hits": 1
+            },
+            {
+              "Line": 181,
+              "Offset": 237,
+              "EndOffset": 309,
+              "Path": 0,
+              "Ordinal": 14,
+              "Hits": 86
+            }
+          ]
+        },
+        "System.Object Jx.net.Transformer.JsonTransformer::ProcessPipes(System.Collections.Generic.List`1<System.String>,System.Object)": {
+          "Lines": {
+            "190": 86,
+            "192": 91,
+            "193": 0,
+            "194": 0,
+            "195": 86,
+            "196": 86,
+            "197": 91,
+            "198": 91,
+            "200": 86,
+            "201": 86
+          },
+          "Branches": [
+            {
+              "Line": 193,
+              "Offset": 25,
+              "EndOffset": 27,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 193,
+              "Offset": 25,
+              "EndOffset": 45,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 5
+            },
+            {
+              "Line": 197,
+              "Offset": 51,
+              "EndOffset": 55,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            },
+            {
+              "Line": 197,
+              "Offset": 51,
+              "EndOffset": 113,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 5
+            }
+          ]
+        },
+        "System.Collections.Generic.List`1<System.String> Jx.net.Transformer.JsonTransformer::GetPipes(System.Text.RegularExpressions.Match)": {
+          "Lines": {
+            "203": 86,
+            "204": 86,
+            "205": 91,
+            "206": 30,
+            "207": 5,
+            "208": 5,
+            "209": 5,
+            "211": 86,
+            "212": 86
+          },
+          "Branches": [
+            {
+              "Line": 205,
+              "Offset": 30,
+              "EndOffset": 32,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 5
+            },
+            {
+              "Line": 206,
+              "Offset": 96,
+              "EndOffset": 63,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 5
+            },
+            {
+              "Line": 206,
+              "Offset": 96,
+              "EndOffset": 98,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 5
+            },
+            {
+              "Line": 205,
+              "Offset": 30,
+              "EndOffset": 122,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 86
+            }
+          ]
+        },
+        "Jx.net.Transformer.Context Jx.net.Transformer.JsonTransformer::FindContext(System.String,System.String&)": {
+          "Lines": {
+            "214": 96,
+            "215": 96,
+            "216": 96,
+            "230": 192,
+            "231": 96,
+            "232": 0,
+            "233": 0,
+            "234": 0,
+            "236": 96,
+            "237": 96
+          },
+          "Branches": [
+            {
+              "Line": 230,
+              "Offset": 58,
+              "EndOffset": 60,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 66
+            },
+            {
+              "Line": 230,
+              "Offset": 58,
+              "EndOffset": 76,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 30
+            },
+            {
+              "Line": 230,
+              "Offset": 79,
+              "EndOffset": 81,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 96
+            },
+            {
+              "Line": 231,
+              "Offset": 89,
+              "EndOffset": 91,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 88
+            },
+            {
+              "Line": 231,
+              "Offset": 89,
+              "EndOffset": 121,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 8
+            },
+            {
+              "Line": 230,
+              "Offset": 79,
+              "EndOffset": 130,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Boolean Jx.net.Transformer.JsonTransformer::<FindContext>g__Check|24_0(System.String,Jx.net.Transformer.Context,Jx.net.Transformer.JsonTransformer/<>c__DisplayClass24_0&)": {
+          "Lines": {
+            "218": 96,
+            "219": 126,
+            "220": 30,
+            "221": 30,
+            "223": 66,
+            "224": 96
+          },
+          "Branches": [
+            {
+              "Line": 219,
+              "Offset": 15,
+              "EndOffset": 17,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 30
+            },
+            {
+              "Line": 219,
+              "Offset": 15,
+              "EndOffset": 29,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 66
+            }
+          ]
+        },
+        "System.Boolean Jx.net.Transformer.JsonTransformer::<FindContext>g__CheckNamed|24_1(System.String,Jx.net.Transformer.JsonTransformer/<>c__DisplayClass24_0&)": {
+          "Lines": {
+            "226": 66,
+            "227": 66,
+            "228": 66
+          },
+          "Branches": []
+        },
+        "System.Void Jx.net.Transformer.JsonTransformer::.ctor(Jx.net.Transformer.TransformOptions)": {
+          "Lines": {
+            "14": 7,
+            "19": 7,
+            "21": 7,
+            "23": 14,
+            "24": 7,
+            "25": 7
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Work\\Repos\\raghu-repo\\Jx.net\\Jx.net\\Transformer\\Patterns.cs": {
+      "Jx.net.Transformer.Patterns": {
+        "System.Boolean Jx.net.Transformer.Patterns::IsMatch(System.Text.RegularExpressions.Regex,System.String,System.Text.RegularExpressions.Match&)": {
+          "Lines": {
+            "27": 10,
+            "28": 10,
+            "29": 10,
+            "30": 10
+          },
+          "Branches": []
+        },
+        "System.Void Jx.net.Transformer.Patterns::.cctor()": {
+          "Lines": {
+            "10": 1,
+            "11": 1,
+            "13": 1,
+            "14": 1,
+            "15": 1,
+            "17": 1,
+            "18": 1,
+            "19": 1,
+            "21": 1,
+            "22": 1,
+            "23": 1,
+            "25": 1
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Work\\Repos\\raghu-repo\\Jx.net\\Jx.net\\Transformer\\TransformOptions.cs": {
+      "Jx.net.Transformer.TransformOptions": {
+        "System.Boolean Jx.net.Transformer.TransformOptions::get_NullToNoPath()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.Int64 Jx.net.Transformer.TransformOptions::get_MaxIterations()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Work\\Repos\\raghu-repo\\Jx.net\\Jx.net\\Formulas\\FormulaSolver.cs": {
+      "Jx.net.Formulas.FormulaSolver": {
+        "T Jx.net.Formulas.FormulaSolver::Solve(System.String,System.Collections.Generic.Dictionary`2<System.String,System.Object>)": {
+          "Lines": {
+            "12": 2,
+            "13": 2,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "18": 2,
+            "19": 2,
+            "20": 2
+          },
+          "Branches": [
+            {
+              "Line": 14,
+              "Offset": 24,
+              "EndOffset": 26,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 14,
+              "Offset": 24,
+              "EndOffset": 47,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 2
+            }
+          ]
+        },
+        "Flee.PublicTypes.ExpressionContext Jx.net.Formulas.FormulaSolver::CreateExpressionContext()": {
+          "Lines": {
+            "22": 2,
+            "23": 2,
+            "24": 2,
+            "28": 2,
+            "29": 2
+          },
+          "Branches": []
+        }
+      }
+    },
+    "C:\\Work\\Repos\\raghu-repo\\Jx.net\\Jx.net\\Extensions\\IEnumerableExt.cs": {
+      "Jx.net.Extensions.IEnumerableExtensions": {
+        "System.Void Jx.net.Extensions.IEnumerableExtensions::Each(System.Collections.Generic.IEnumerable`1<T>,System.Action`1<T>)": {
+          "Lines": {
+            "11": 38,
+            "12": 444,
+            "13": 38
+          },
+          "Branches": [
+            {
+              "Line": 12,
+              "Offset": 32,
+              "EndOffset": 11,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 110
+            },
+            {
+              "Line": 12,
+              "Offset": 32,
+              "EndOffset": 34,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 38
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Work\\Repos\\raghu-repo\\Jx.net\\Jx.net\\Extensions\\JTokenExtensions.cs": {
+      "Jx.net.Extensions.JTokenExtensions": {
+        "System.Boolean Jx.net.Extensions.JTokenExtensions::TrySelectToken(Newtonsoft.Json.Linq.JToken,System.String,Newtonsoft.Json.Linq.JToken&)": {
+          "Lines": {
+            "16": 86,
+            "17": 86,
+            "18": 86,
+            "19": 86
+          },
+          "Branches": []
+        },
+        "System.Void Jx.net.Extensions.JTokenExtensions::AllStrings(Newtonsoft.Json.Linq.JToken,Jx.net.Extensions.StringJtokenAction)": {
+          "Lines": {
+            "22": 134,
+            "23": 165,
+            "24": 125,
+            "25": 31,
+            "26": 110,
+            "27": 23,
+            "28": 7,
+            "29": 192,
+            "30": 96,
+            "31": 96,
+            "32": 134
+          },
+          "Branches": [
+            {
+              "Line": 23,
+              "Offset": 25,
+              "EndOffset": 27,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 31
+            },
+            {
+              "Line": 23,
+              "Offset": 25,
+              "EndOffset": 60,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 103
+            },
+            {
+              "Line": 26,
+              "Offset": 71,
+              "EndOffset": 73,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 7
+            },
+            {
+              "Line": 26,
+              "Offset": 71,
+              "EndOffset": 101,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 96
+            },
+            {
+              "Line": 29,
+              "Offset": 112,
+              "EndOffset": 114,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 96
+            },
+            {
+              "Line": 29,
+              "Offset": 112,
+              "EndOffset": 141,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 134
+            }
+          ]
+        },
+        "Newtonsoft.Json.Linq.JArray Jx.net.Extensions.JTokenExtensions::FlattenArray(System.Collections.Generic.IEnumerable`1<Newtonsoft.Json.Linq.JToken>)": {
+          "Lines": {
+            "34": 6,
+            "35": 6,
+            "45": 39,
+            "46": 11,
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "51": 7,
+            "52": 3,
+            "53": 3,
+            "54": 3,
+            "55": 7,
+            "57": 6,
+            "58": 6
+          },
+          "Branches": [
+            {
+              "Line": 45,
+              "Offset": 153,
+              "EndOffset": 25,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 7
+            },
+            {
+              "Line": 46,
+              "Offset": 67,
+              "EndOffset": 69,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 4
+            },
+            {
+              "Line": 46,
+              "Offset": 67,
+              "EndOffset": 103,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 3
+            },
+            {
+              "Line": 45,
+              "Offset": 153,
+              "EndOffset": 158,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 6
+            },
+            {
+              "Line": 49,
+              "Offset": 26,
+              "EndOffset": 28,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 49,
+              "Offset": 26,
+              "EndOffset": 60,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "Newtonsoft.Json.Linq.JArray Jx.net.Extensions.JTokenExtensions::FindBlockStatement(Newtonsoft.Json.Linq.JToken,System.Text.RegularExpressions.Match&)": {
+          "Lines": {
+            "60": 34,
+            "61": 34,
+            "62": 34
+          },
+          "Branches": []
+        },
+        "Newtonsoft.Json.Linq.JArray Jx.net.Extensions.JTokenExtensions::FindBlockTemplate(Newtonsoft.Json.Linq.JToken,System.Text.RegularExpressions.Regex,System.Text.RegularExpressions.Match&)": {
+          "Lines": {
+            "65": 173,
+            "66": 214,
+            "67": 41,
+            "68": 479,
+            "69": 121,
+            "70": 128,
+            "71": 7,
+            "73": 114,
+            "74": 34,
+            "75": 150,
+            "76": 18,
+            "77": 28,
+            "78": 10,
+            "81": 78,
+            "82": 18,
+            "83": 0,
+            "84": 0,
+            "86": 18,
+            "87": 8,
+            "89": 156,
+            "90": 156,
+            "107": 173
+          },
+          "Branches": [
+            {
+              "Line": 66,
+              "Offset": 20,
+              "EndOffset": 22,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 41
+            },
+            {
+              "Line": 68,
+              "Offset": 103,
+              "EndOffset": 45,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 121
+            },
+            {
+              "Line": 70,
+              "Offset": 84,
+              "EndOffset": 86,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 7
+            },
+            {
+              "Line": 70,
+              "Offset": 84,
+              "EndOffset": 96,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 114
+            },
+            {
+              "Line": 68,
+              "Offset": 103,
+              "EndOffset": 105,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 34
+            },
+            {
+              "Line": 66,
+              "Offset": 20,
+              "EndOffset": 124,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 132
+            },
+            {
+              "Line": 75,
+              "Offset": 137,
+              "EndOffset": 139,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 18
+            },
+            {
+              "Line": 77,
+              "Offset": 162,
+              "EndOffset": 164,
+              "Path": 0,
+              "Ordinal": 8,
+              "Hits": 10
+            },
+            {
+              "Line": 77,
+              "Offset": 162,
+              "EndOffset": 171,
+              "Path": 1,
+              "Ordinal": 9,
+              "Hits": 8
+            },
+            {
+              "Line": 81,
+              "Offset": 235,
+              "EndOffset": 183,
+              "Path": 1,
+              "Ordinal": 13,
+              "Hits": 18
+            },
+            {
+              "Line": 83,
+              "Offset": 218,
+              "EndOffset": 220,
+              "Path": 0,
+              "Ordinal": 10,
+              "Hits": 0
+            },
+            {
+              "Line": 83,
+              "Offset": 218,
+              "EndOffset": 227,
+              "Path": 1,
+              "Ordinal": 11,
+              "Hits": 18
+            },
+            {
+              "Line": 81,
+              "Offset": 235,
+              "EndOffset": 237,
+              "Path": 0,
+              "Ordinal": 12,
+              "Hits": 8
+            },
+            {
+              "Line": 75,
+              "Offset": 137,
+              "EndOffset": 253,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 156
+            }
+          ]
+        },
+        "System.Boolean Jx.net.Extensions.JTokenExtensions::<FindBlockTemplate>g__IsBlockTemplateArray|4_0(Newtonsoft.Json.Linq.JArray,System.Text.RegularExpressions.Match&,Jx.net.Extensions.JTokenExtensions/<>c__DisplayClass4_0&)": {
+          "Lines": {
+            "93": 18,
+            "94": 18,
+            "95": 30,
+            "96": 12,
+            "97": 12,
+            "98": 22,
+            "99": 10,
+            "100": 10,
+            "102": 2,
+            "104": 8,
+            "105": 8,
+            "106": 18
+          },
+          "Branches": [
+            {
+              "Line": 94,
+              "Offset": 8,
+              "EndOffset": 10,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 94,
+              "Offset": 8,
+              "EndOffset": 13,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 18
+            },
+            {
+              "Line": 95,
+              "Offset": 22,
+              "EndOffset": 24,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 18
+            },
+            {
+              "Line": 95,
+              "Offset": 22,
+              "EndOffset": 35,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 95,
+              "Offset": 38,
+              "EndOffset": 40,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 12
+            },
+            {
+              "Line": 98,
+              "Offset": 71,
+              "EndOffset": 73,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 10
+            },
+            {
+              "Line": 98,
+              "Offset": 71,
+              "EndOffset": 82,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 2
+            },
+            {
+              "Line": 95,
+              "Offset": 38,
+              "EndOffset": 83,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 8
+            }
+          ]
+        }
+      },
+      "Jx.net.Extensions.JTokenExtensions/<>c__DisplayClass2_0": {
+        "System.Void Jx.net.Extensions.JTokenExtensions/<>c__DisplayClass2_0::<FlattenArray>g__IfTargetArrayNull|0(Newtonsoft.Json.Linq.JToken,System.Action)": {
+          "Lines": {
+            "37": 7,
+            "38": 13,
+            "39": 6,
+            "40": 7,
+            "41": 1,
+            "42": 1,
+            "43": 7
+          },
+          "Branches": [
+            {
+              "Line": 38,
+              "Offset": 12,
+              "EndOffset": 14,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 6
+            },
+            {
+              "Line": 38,
+              "Offset": 12,
+              "EndOffset": 30,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 41,
+              "Offset": 32,
+              "EndOffset": 36,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 41,
+              "Offset": 32,
+              "EndOffset": 43,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 1
+            }
+          ]
+        }
+      }
+    },
+    "C:\\Work\\Repos\\raghu-repo\\Jx.net\\Jx.net\\Extensions\\StringExtensions.cs": {
+      "Jx.net.Extensions.StringExtensions": {
+        "System.String Jx.net.Extensions.StringExtensions::SplitFirst(System.String,System.String,System.String&)": {
+          "Lines": {
+            "10": 96,
+            "11": 96,
+            "12": 104,
+            "13": 8,
+            "14": 8,
+            "17": 88,
+            "18": 88,
+            "20": 88,
+            "21": 96
+          },
+          "Branches": [
+            {
+              "Line": 12,
+              "Offset": 15,
+              "EndOffset": 17,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 8
+            },
+            {
+              "Line": 12,
+              "Offset": 15,
+              "EndOffset": 29,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 88
+            }
+          ]
+        }
+      }
+    }
+  }
+}

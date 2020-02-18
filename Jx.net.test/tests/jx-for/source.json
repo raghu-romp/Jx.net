@@ -1,0 +1,71 @@
+{
+  "people":
+  [
+    {
+      "firstName": "Heidi",
+      "lastName": "Coffey",
+      "isAlive": true,
+      "age": 67,
+      "address": {
+        "streetAddress": "Norman Avenue",
+        "city": "Avalon",
+        "state": "Pennsylvania",
+        "postalCode": 7394
+      },
+      "phoneNumbers": [
+        {
+          "type": "home",
+          "number": "827 406-2872"
+        },
+        {
+          "type": "mobile",
+          "number": "902 439-2165"
+        }
+      ]
+    },
+    {
+      "firstName": "Colon",
+      "lastName": "Murphy",
+      "isAlive": false,
+      "age": 56,
+      "address": {
+        "streetAddress": "Clifford Place",
+        "city": "Greenock",
+        "state": "Colorado",
+        "postalCode": 9922
+      },
+      "phoneNumbers": [
+        {
+          "type": "home",
+          "number": "927 599-3033"
+        },
+        {
+          "type": "mobile",
+          "number": "862 447-3703"
+        }
+      ]
+    },
+    {
+      "firstName": "Hodges",
+      "lastName": "Giles",
+      "isAlive": true,
+      "age": 65,
+      "address": {
+        "streetAddress": "Stuyvesant Avenue",
+        "city": "Makena",
+        "state": "Washington",
+        "postalCode": 8024
+      },
+      "phoneNumbers": [
+        {
+          "type": "home",
+          "number": "808 486-2959"
+        },
+        {
+          "type": "mobile",
+          "number": "899 404-3948"
+        }
+      ]
+    }
+  ]
+}

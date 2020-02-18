@@ -16,7 +16,7 @@ namespace Jx.net.Formulas
             }
 
             var compilied = context.CompileDynamic(expression);
-            return (T)compilied.Evaluate();
+            return (T)Convert.ChangeType(compilied.Evaluate(), typeof(T));
         }
 
         private static ExpressionContext CreateExpressionContext() {

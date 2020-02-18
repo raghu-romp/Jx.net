@@ -1,0 +1,18 @@
+[
+  {
+    "Code": "USD",
+    "Symbol": "$"
+  },
+  {
+    "Code": "AUD",
+    "Symbol": "A$"
+  },
+  {
+    "Code": "CAD",
+    "Symbol": "C$"
+  },
+  {
+    "Code": "GBP",
+    "Symbol": "\u00a3" //This is unicode for £
+  }
+]
